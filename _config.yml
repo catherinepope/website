@@ -33,10 +33,11 @@ logo: "/assets/images/CP-solid.png"
 
 # Build settings
 theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "dirt"
+minimal_mistakes_skin: "contrast"
 plugins:
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-archives
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
@@ -106,3 +107,13 @@ footer:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/drcatherinepope/"
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy 
+  permalinks:
+     category: /categories/:name/
+     tag: /tags/:name/
