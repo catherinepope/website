@@ -35,6 +35,8 @@ search_provider: algolia
 # Build settings
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "default"
+paginate: 5 # number of posts to display on homepage
+paginate_path: /page:num/
 plugins:
   - jekyll-feed
   - jekyll-include-cache
