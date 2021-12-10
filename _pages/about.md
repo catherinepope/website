@@ -4,10 +4,29 @@ title: About
 permalink: /about/
 ---
 
-I'm a technical communicator. My current adventure involves tinkering with static site generators. This time it's Jekyll.
+Hello. I’m Catherine Pope, a technical writer and trainer.
 
-Soon, I'll be uploading to GitHub.
+I enjoy mastering difficult concepts and helping other people understand them.
 
-Experimenting with embedding a YouTube video:
+With an extensive background in industry and academia, I’ve created training materials in a range of formats, including user guides, books, and video-based courses.
+
+Before becoming a technical communicator, I worked for many years as an IT manager/web developer (part of it in the finance industry), and also as a university lecturer specialising in Victorian literature. Yes, it’s an odd combination. However, I’m now bringing together my love of learning, teaching, and technology.
+
+
+I also run [PhD Progress](https://www.phdprogress.com), a coaching and training platform for doctoral researchers. I develop online courses, run webinars, and share resources. In the tiny amount of time that’s left, I manage [Victorian Secrets](https://www.victoriansecrets.co.uk), a micro press dedicated to books from and about the nineteenth century. These projects allow me to enjoy a varied and fulfilling career, along with diversified income streams.
+
+I live in Brighton on the south coast of England with my partner Tanya and two stripy cats.
+
+### Recent Training
+
+- Technical Author Writing Course (Cherryleaf)
+- Intermediate/Advanced Technical Communication (Cherryleaf)
+- Full-Stack Engineer (Codecademy)
+
+You can find out much more about my employment history, qualifications, and interests on [my LinkedIn profile](https://www.linkedin.com/in/drcatherinepope/).
+
+{% comment %}
 
 {% include video id="ny0pue6MKek" provider="youtube" %}
+
+{% endcomment %}

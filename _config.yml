@@ -22,9 +22,7 @@ title: Catherine Pope
 subtitle: Technical Communicator
 email: me@catherinepope.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  I'm a technical communicator, working in devops. I get very excited about technology, the 19th century, and gin. 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: drcatherinepope
@@ -36,11 +34,12 @@ search_provider: algolia
 
 # Build settings
 theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "contrast"
+minimal_mistakes_skin: "default"
 plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-archives
+  - jekyll-seo-tag
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
@@ -85,7 +84,7 @@ defaults:
 author:
   name: "Catherine Pope"
   avatar: "/assets/images/Catherine-Pope.png"
-  bio: "I am a technical communicator." # Note: Markdown is allowed
+  bio: "I am a technical communicator and trainer." # Note: Markdown is allowed
   location: "Brighton, UK"
   links:
     - label: "Homepage"
