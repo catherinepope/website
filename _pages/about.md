@@ -25,6 +25,10 @@ I live in Brighton on the south coast of England with my partner Tanya and two s
 
 You can find out much more about my employment history, qualifications, and interests on [my LinkedIn profile](https://www.linkedin.com/in/drcatherinepope/).
 
+### About this Site
+
+This site is written in Markdown and built with Jekyll, using the Minimal Mistakes theme. Once committed to my GitHub repo, the site is automatically deployed through Netlify.
+
 {% comment %}
 
 {% include video id="ny0pue6MKek" provider="youtube" %}
