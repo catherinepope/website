@@ -4,6 +4,8 @@ title:  "Boost Your Productivity with TextExpander"
 date:   2021-01-30 10:19:28 +0100
 categories: tutorials
 share: true
+redirect_from:
+  - /boost-your-productivity-with-textexpander/
 header:
   video:
     id: zUlsjjYJ7mg

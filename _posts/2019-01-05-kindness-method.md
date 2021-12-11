@@ -3,6 +3,8 @@ layout: single
 title:  "The Kindness Method by Shahroo Izadi"
 date:   2019-01-05 10:19:28 +0100
 category: books
+redirect_from:
+  - /the-kindness-method-by-shahroo-izadi/
 ---
 
 ![Cover of The Kindness Method](/assets/images/the-kindness-method.jpg){: .align-right}When we want to quit a destructive habit, it's common to be hard on ourselves. We don't just start with a gentle 20-minute canter around the block, it has to be a 5k run before breakfast. Every day. There's nobility in suffering and, of course, we crave fast results. This punishing schedule proves unsustainable and we're confronted with yet more evidence of our flakiness. Nevertheless, many self-help books urge us to pursue dramatic change.

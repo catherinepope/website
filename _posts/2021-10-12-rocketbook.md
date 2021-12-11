@@ -4,6 +4,8 @@ title:  "Capture Handwritten Notes with a Rocketbook"
 date:   2021-02-11 10:19:28 +0100
 categories: tutorials
 share: true
+redirect_from:
+  - /capture-handwritten-notes-with-a-rocketbook/
 header:
   video:
     id: ou5mQMq_VKM

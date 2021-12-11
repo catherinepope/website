@@ -4,6 +4,8 @@ title:  "Quick and Easy Video Captions with Sonix"
 date:   2021-01-22 10:19:28 +0100
 categories: tutorials
 share: true
+redirect_from:
+  - /quick-and-easy-video-captions-with-sonix/
 header:
   video:
     id: nYCyOmZBrOM

@@ -3,6 +3,8 @@ layout: single
 title:  "The Art of Deliberate Practice"
 date:   2020-07-06 10:19:28 +0100
 categories: learning
+redirect_from:
+  - /the-art-of-deliberate-practice/
 ---
 
 One of my [favourite cartoons](https://www.savagechickens.com/2016/04/practice.html) shows a despondent chicken telling his violin teacher, “I don’t want to practice! I want to skip to the part where I’m awesome.” I feel like this every time I try to learn something new. Although I’m certainly not becoming more patient with age, I do now have a reasonably realistic idea of what it takes to actually get good at something. This is mainly due to the work of [Professor Anders Ericsson, who sadly died last week](https://www.nytimes.com/2020/07/01/science/anders-ericsson-dead.html).

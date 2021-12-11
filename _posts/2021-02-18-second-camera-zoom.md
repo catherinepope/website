@@ -4,6 +4,8 @@ title:  "How to Use a Second Camera in Zoom"
 date:   2021-02-18 10:19:28 +0100
 categories: tutorials
 share: true
+redirect_from:
+  - /how-to-use-a-second-camera-in-zoom/
 header:
   video:
     id: Te7-NYFgXSo

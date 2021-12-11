@@ -4,6 +4,8 @@ title:  "How to Edit Audio with Descript"
 date:   2021-01-07 10:19:28 +0100
 categories: tutorials
 share: true
+redirect_from:
+  - /easy-audio-editing-with-descript/
 header:
   video:
     id: 5sI8ZvO2_TA

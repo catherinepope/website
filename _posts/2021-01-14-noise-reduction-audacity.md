@@ -4,6 +4,8 @@ title:  "Easy Noise Reduction with Audacity"
 date:   2021-01-14 10:19:28 +0100
 categories: tutorials
 share: true
+redirect_from:
+  - /easy-noise-reduction-with-audacity/
 header:
   video:
     id: q0CLvi6HWT8
