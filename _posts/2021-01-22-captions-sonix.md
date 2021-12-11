@@ -6,6 +6,7 @@ categories: tutorials
 share: true
 redirect_from:
   - /quick-and-easy-video-captions-with-sonix/
+  - /three-of-the-best-transcription-tools/
 header:
   video:
     id: nYCyOmZBrOM
