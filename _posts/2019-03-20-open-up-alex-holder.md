@@ -3,6 +3,7 @@ layout: single
 title:  "Open Up: The Power of Talking About Money by Alex Holder"
 date:   2019-03-20 10:19:28 +0100
 categories: books
+author_profile: true
 share: true
 ---
 

@@ -3,6 +3,8 @@ layout: single
 title:  "The Kindness Method by Shahroo Izadi"
 date:   2019-01-05 10:19:28 +0100
 category: books
+author_profile: true
+share: true
 redirect_from:
   - /the-kindness-method-by-shahroo-izadi/
 ---

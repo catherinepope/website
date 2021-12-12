@@ -5,6 +5,7 @@ date:   2020-07-03 10:19:28 +0100
 redirect_from:
   - /how-to-turn-your-phone-into-a-webcam/
 categories: tutorials
+author_profile: true
 share: true
 ---
 

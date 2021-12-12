@@ -37,6 +37,7 @@ redirect_from:
   - /help-ive-ignored-my-pension-part-2-building-your-assets/
   - /help-ive-ignored-my-pension-part1/
   - /whats-your-ikigai/
+  - /getting-started/
 ---
 
 I'm no longer updating my finance-related blog posts, so I've taken them down. For helpful and impartial guidance on money, try these sites:

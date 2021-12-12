@@ -3,6 +3,8 @@ layout: single
 title:  "My Favourite Books of 2019"
 date:   2020-01-03 10:19:28 +0100
 category: books
+author_profile: true
+share: true
 redirect_from:
   - /my-favourite-books-of-2019/
 ---
