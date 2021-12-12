@@ -10,8 +10,11 @@ I enjoy mastering difficult concepts and helping other people understand them.
 
 With an extensive background in industry and academia, I’ve created training materials in a range of formats, including user guides, books, and video-based courses.
 
-Before becoming a technical communicator, I worked for many years as an IT manager/web developer (part of it in the finance industry), and also as a university lecturer specialising in Victorian literature. Yes, it’s an odd combination. However, I’m now bringing together my love of learning, teaching, and technology.
+Before becoming a technical writer, I worked for many years as an IT manager/web developer (part of it in the finance industry), and also as a university lecturer specialising in Victorian literature. Yes, it’s an odd combination. However, I’m now bringing together my love of learning, teaching, and technology.
 
+I work in DevOps, creating documentation and training material for engineers. All views here are my own and don't represent my employer.
+
+Alongside my job, I serve on the [Documentation Interest Group for the Public Knowledge Project](https://pkp.sfu.ca/documentation-interest-group/). PKP provides free open source software for scholarly publishing projects.
 
 I also run [PhD Progress](https://www.phdprogress.com), a coaching and training platform for doctoral researchers. I develop online courses, run webinars, and share resources. In the tiny amount of time that’s left, I manage [Victorian Secrets](https://www.victoriansecrets.co.uk), a micro press dedicated to books from and about the nineteenth century. These projects allow me to enjoy a varied and fulfilling career, along with diversified income streams.
 
