@@ -18,7 +18,7 @@ Alongside my job, I serve on the [Documentation Interest Group for the Public Kn
 
 I also run [PhD Progress](https://www.phdprogress.com), a coaching and training platform for doctoral researchers. I develop online courses, run webinars, and share resources. In the tiny amount of time that’s left, I manage [Victorian Secrets](https://www.victoriansecrets.co.uk), a micro press dedicated to books from and about the nineteenth century. These projects allow me to enjoy a varied and fulfilling career, along with diversified income streams.
 
-I live in Brighton on the south coast of England with my partner Tanya and two stripy cats.
+I live in Brighton on the south coast of England with my partner Tanya, two stripy cats, and thousands of books.
 
 ### Recent Training
 
@@ -27,6 +27,10 @@ I live in Brighton on the south coast of England with my partner Tanya and two s
 - Full-Stack Engineer (Codecademy)
 
 You can find out much more about my employment history, qualifications, and interests on [my LinkedIn profile](https://www.linkedin.com/in/drcatherinepope/).
+
+I'm a certified Member of the [Institute of Scientific and Technical Communicators](https://istc.org.uk).
+
+![Logo of Institute of Scientific and Technical Communicators](../assets/images/istc-certified-member-landscape-small.png)
 
 ### About this Site
 
