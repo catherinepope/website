@@ -1,0 +1,7 @@
+---
+layout: single
+title: Sample
+permalink: /sample/
+---
+
+This is an Asciidoc test ...
