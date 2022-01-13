@@ -5,3 +5,7 @@ permalink: /sample/
 ---
 
 This is an Asciidoc test ...
+
+In markdown content, internal links within docs should use `pass:[{{ site.baseurl }}]` in order to create relative links.
+
+In markdown content, internal links within docs should use `+{{ site.baseurl }}+` in order to create relative links.
