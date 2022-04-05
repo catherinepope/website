@@ -14,8 +14,6 @@ Before becoming a technical writer, I worked for many years as an IT manager/web
 
 I work in DevOps, creating documentation and training material for engineers. All views here are my own and don't represent my employer.
 
-Alongside my job, I serve on the [Documentation Interest Group for the Public Knowledge Project](https://pkp.sfu.ca/documentation-interest-group/). PKP provides free open source software for scholarly publishing projects.
-
 I also run [PhD Progress](https://www.phdprogress.com), a coaching and training platform for doctoral researchers. I develop online courses, run webinars, and share resources. In the tiny amount of time that’s left, I manage [Victorian Secrets](https://www.victoriansecrets.co.uk), a micro press dedicated to books from and about the nineteenth century. These projects allow me to enjoy a varied and fulfilling career, along with diversified income streams.
 
 I live in Brighton on the south coast of England with my partner Tanya, two stripy cats, and thousands of books.
