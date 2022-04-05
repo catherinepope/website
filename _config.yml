@@ -125,6 +125,6 @@ jekyll-archives:
      tag: /tags/:name/
 algolia:
   application_id: 7A18AUWQFR
-  index_name: Jekyll
+  index_name: netlify_3707ada9-0918-4655-8905-bb2d028a3ea3_main_all
   search_only_api_key: 02b64156b96af40a84498de91e318c22
   powered_by: # true (default), false
