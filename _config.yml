@@ -124,7 +124,7 @@ jekyll-archives:
      category: /categories/:name/
      tag: /tags/:name/
 algolia:
-  application_id: 7A18AUWQFR
-  index_name: netlify_3707ada9-0918-4655-8905-bb2d028a3ea3_main_all
-  search_only_api_key: 02b64156b96af40a84498de91e318c22
+  application_id: 3CI0NHODXZ
+  index_name: Jekyll
+  search_only_api_key: 60b9758ae5150e6acbc56487ac07a1a0
   powered_by: # true (default), false
