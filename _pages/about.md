@@ -32,7 +32,7 @@ I'm a certified Member of the [Institute of Scientific and Technical Communicato
 
 ### About this Site
 
-This site is written in Markdown and built with Jekyll, using the Minimal Mistakes theme. Once committed to my GitHub repo, the site is automatically deployed through Netlify and indexed by [https://algolia.com](Algolia).
+This site is written in Markdown and built with Jekyll, using the Minimal Mistakes theme. Once committed to my GitHub repo, the site is automatically deployed through Netlify and indexed by [Algolia](https://algolia.com).
 
 {% comment %}
 
