@@ -14,12 +14,14 @@ Before becoming a technical writer, I worked for many years as an IT manager/web
 
 I work in DevOps, creating documentation and training material for engineers. All views here are my own and don't represent my employer.
 
-I also run [PhD Progress](https://www.phdprogress.com), a coaching and training platform for doctoral researchers. I develop online courses, run webinars, and share resources. In the tiny amount of time that’s left, I manage [Victorian Secrets](https://www.victoriansecrets.co.uk), a micro press dedicated to books from and about the nineteenth century. These projects allow me to enjoy a varied and fulfilling career, along with diversified income streams.
+In the tiny amount of time that’s left, I manage [Victorian Secrets](https://www.victoriansecrets.co.uk), a micro press dedicated to books from and about the nineteenth century.
 
 I live in Brighton on the south coast of England with my partner Tanya, two stripy cats, and thousands of books.
 
 ### Recent Training
 
+- Certified Kubernetes Administrator (A Cloud Guru)
+- Docker Certified Associate (A Cloud Guru)
 - Technical Author Writing Course (Cherryleaf)
 - Intermediate/Advanced Technical Communication (Cherryleaf)
 - Full-Stack Engineer (Codecademy)
