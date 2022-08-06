@@ -2,9 +2,9 @@
 layout: single
 title: Storage in Kubernetes
 permalink: /kubernetes/storage/
+toc: true
 ---
 
-# Storage in Kubernetes
 
 ## PersistentVolumes
 
