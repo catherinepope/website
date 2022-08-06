@@ -1,3 +1,9 @@
+---
+layout: single
+title: Storage in Kubernetes
+permalink: /kubernetes/storage/
+---
+
 # Storage in Kubernetes
 
 ## PersistentVolumes
