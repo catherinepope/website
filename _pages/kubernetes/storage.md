@@ -18,7 +18,7 @@ A **PersistentVolumeReclaimPolicy** determines what happens when the associated 
 - **Delete** - deletes both the PersistentVolume and its underlying storage infrastructure (e.g. a cloud storage object).
 - **Recycle** - deletes the data so the volume can be reused.
 
-```
+``` yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
