@@ -5,6 +5,59 @@ permalink: /kubernetes/storage/
 toc: true
 ---
 
+## Mounting Volumes to Pods
+
+In this Pod specification, you specify the storage volumes available to the Pod. 
+
+You then reference those volumes in the *container* spec and provide a `mountPath`, the location on the file system where the container process will access the volume data:
+
+``` yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    volumeMounts:
+    - name: my-volume
+      mountPath: /output
+  volumes:
+  - name: my-volume
+    hostPath:
+      path: /data
+```
+
+You can use `volumeMounts` to mount the same volume to multiple containers within the same Pod. The mount path doesn't need to be the same. This allows containers to interact with each other inside the Pod:
+
+``` yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+spec:
+  containers:
+  - name: busybox1
+    image: busybox
+    volumeMounts:
+    - name: my-volume
+      mountPath: /output
+  - name: busybox2
+    image: busybox
+    volumeMounts:
+    - name: my-volume
+      mountPath: /input
+  volumes:
+  - name: my-volume
+    emptyDir: {} # no value is required here, but YAML doesn't link blanks.
+```
+
+### Volume Types
+
+- **hostPath**: stores data in a specified directory on the Kubernetes node.
+- **emptyDir**: stores data in a dynamically created location on the node. This directory exists only as long as the Pod exists on the node. When the Pod is removed, the directory and the data are removed. This volume type is good for simply sharing data between two containers in the same Pod.
+
 
 ## PersistentVolumes
 
@@ -45,11 +98,11 @@ Pods claim storage through a **PersistentVolumeClaim** (PVC). Kubernetes matches
 
 The PVC specification includes an access mode, storage amount, and storage class. If no storage class is specified, Kubernetes tries to find an existing PersistentVolume that satisfies the requirements of the claim.
 
-```
+``` yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: myclaim
+  name: my-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -57,12 +110,7 @@ spec:
   resources:
     requests:
       storage: 8Gi
-  storageClassName: slow
-  selector:
-    matchLabels:
-      release: "stable"
-    matchExpressions:
-      - {key: environment, operator: In, values: [dev]}
+  storageClassName: localdisk
 ```
 
 If there's a match, the PVC is bound to the PV. Once a PV is claimed, it is no longer available for any other PVCs to use.
@@ -71,7 +119,7 @@ If there's no matching PV when you create a PVC, the claim is still created, but
 
 Pods access storage by using the claim as a volume. The cluster finds the claim in the Pod's namespace and uses it to get the PersistentVolume backing the claim. The volume is then mounted to the host and into the Pod.
 
-```
+``` yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -86,31 +134,29 @@ spec:
   volumes:
     - name: mypd
       persistentVolumeClaim:
-        claimName: myclaim
+        claimName: my-pvc
 ```
+
 
 ## Storage Classes
 
-For scaling storage, Kubernetes offer another object called *storage classes (SC)*. Storage classes create PVs dynamically. Therefore, we don't need to define the PV individually. In this dynamic provisioning workflow, you just create the PersistentVolumeClaim, and the required PersistentVolume is created on demand by the cluster.
+For scaling storage, Kubernetes offer another object called *storage classes (SC)*. Storage Classes allow Kubernetes administrators to specify the types of storage services available on their platform. Storage classes then create PVs dynamically. Therefore, we don't need to define the PV individually. In this dynamic provisioning workflow, you just create the `PersistentVolumeClaim`, and the required `PersistentVolume` is created on demand by the cluster.
 
 Clusters can be configured with multiple storage classes that reflect the different volume capabilities on offer, as well as a default storage class.
 
-PVCs can specify a storage class. If none is specified, the default is used.
-
-You can expand a PersistentVolumeClaim by simply specifying a larger size in the manifest. For this to work, the **storage class** must support volume expansion: **allowVolumeExpansion** should be set to `true`.
+You can expand a `PersistentVolumeClaim` by simply specifying a larger size in the manifest. For this to work, the **storage class** must support volume expansion: **allowVolumeExpansion** should be set to `true`. This can be done without interrupting the applications that are using them.
 
 For example:
 
-```
+``` yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: gluster-vol-default
+  name: localdisk
 provisioner: kubernetes.io/glusterfs
-parameters:
-  resturl: "http://192.168.10.100:8080"
-  restuser: ""
-  secretNamespace: ""
-  secretName: ""
 allowVolumeExpansion: true
+persistentVolumeReclaimPolicy: Recycle
+
 ```
+
+`PersistentVolumeClaims` can specify a storage class. If none is specified, the default is used. If you specify a storage class that doesn't exist, it's created automatically for you (although it won't have `allowVolumeExpansion` set to `true`).
