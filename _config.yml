@@ -44,6 +44,8 @@ plugins:
   - jekyll-include-cache
   - jekyll-archives
   - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-algolia
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
@@ -127,6 +129,7 @@ jekyll-archives:
 algolia:
   # application_id: 3CI0NHODXZ
   application_id: 77IKIOG7AR
+  # index_name: Jekyll
   index_name: netlify_3707ada9-0918-4655-8905-bb2d028a3ea3_main_all
   # search_only_api_key: 60b9758ae5150e6acbc56487ac07a1a0
   search_only_api_key: f1d2017f793e272e02c1722ceae42605
