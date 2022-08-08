@@ -12,8 +12,9 @@ I'm currently working towards the [Docker Certified Associate (DCA)](https://tra
 - What is Docker?
 - Installing Docker
 - Pulling Images and Running a Container
-- Creating an Image
-- Pushing an Image to a Registry
+- [Creating an Image](./creating-docker-images/)
+- [Pushing an Image to a Registry](./pushing-docker-images/)
+- [Managing Images](./managing-docker-images/)
 - Using Docker Compose
 - Using Storage in Docker
 - Using Docker Swarm
