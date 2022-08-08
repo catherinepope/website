@@ -17,7 +17,7 @@ I'm currently working towards the [Docker Certified Associate (DCA)](https://tra
 - Using Docker Compose
 - Using Storage in Docker
 - Using Docker Swarm
-- [Networking in Docker](./networking.md)
+- [Networking in Docker](./networking/)
 - Using Stacks
 - Improving Security in Docker
 - Using Kubernetes with Docker
@@ -35,4 +35,4 @@ The exam cover six domains:
 
 ## Useful Resources
 
-- A Cloud Guru
+- [A Cloud Guru](https://learn.acloud.guru/course/6b00566d-6246-4ebe-8257-f98f989321cf/dashboard)
