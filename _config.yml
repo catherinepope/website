@@ -30,7 +30,7 @@ github_username: catherinepope
 name: "Catherine Pope"
 logo: "/assets/images/CP-solid.png"
 search: true
-search_provider: algolia
+search_provider: lunr
 highlighter: rouge
 
 # Build settings
@@ -134,3 +134,5 @@ algolia:
   # search_only_api_key: 60b9758ae5150e6acbc56487ac07a1a0
   search_only_api_key: f1d2017f793e272e02c1722ceae42605
   powered_by: # true (default), false
+lunr:
+  search_within_pages: true
