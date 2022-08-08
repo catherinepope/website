@@ -171,26 +171,6 @@ Or use the following command to run a container with a custom external DNS:
 
 `docker run --dns DNS_ADDRESS`
 
-## Network Troubleshooting
-
-You can view the container logs:
-
-`docker logs <container-name>`
-
-Or the service logs:
-
-`docker service logs <service-name>`
-
-Or the Docker logs:
-
-`journalctl -u docker`
-
-Alternatively, Netshoot is an image that comes with a variety of network troubleshooting tools. You can insert it into another container with the following command:
-
-`docker run --rm --network container:custom-net-nginx nicolaka/netshoot curl localhost:80`
-
-With the command above, you're inserting a container into the sandbox of another container.
-
 ## Network Commands
 
 To list networks:
@@ -224,4 +204,24 @@ You can also create a network alias for a container. This means it can be refere
 To remove a network:
 
 `docker network rm <network-name>`
+
+## Network Troubleshooting
+
+You can view the container logs:
+
+`docker logs <container-name>`
+
+Or the service logs:
+
+`docker service logs <service-name>`
+
+Or the Docker logs:
+
+`journalctl -u docker`
+
+Alternatively, Netshoot is an image that comes with a variety of network troubleshooting tools. You can insert it into another container with the following command:
+
+`docker run --rm --network container:custom-net-nginx nicolaka/netshoot curl localhost:80`
+
+With the command above, you're inserting a container into the sandbox of another container.
 
