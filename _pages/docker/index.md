@@ -11,7 +11,7 @@ I'm currently working towards the [Docker Certified Associate (DCA)](https://tra
 
 - What is Docker?
 - Installing Docker
-- [Pulling Images](/pulling-docker-images/)
+- [Pulling Images](./pulling-docker-images/)
 - Running a Container
 - [Creating an Image](./creating-docker-images/)
 - [Pushing an Image to a Registry](./pushing-docker-images/)
