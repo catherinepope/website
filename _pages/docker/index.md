@@ -12,11 +12,11 @@ I'm currently working towards the [Docker Certified Associate (DCA)](https://tra
 - What is Docker?
 - Installing Docker
 - [Pulling Images](./pulling-docker-images/)
-- Running a Container
+- [Running Containers](./running-containers/)
 - [Creating an Image](./creating-docker-images/)
 - [Pushing an Image to a Registry](./pushing-docker-images/)
 - [Managing Images](./managing-docker-images/)
-- Using Docker Compose
+- [Using Docker Compose](./docker-compose/)
 - [Using Storage in Docker](./storage/)
 - Using Docker Swarm
 - [Networking in Docker](./networking/)
@@ -38,4 +38,5 @@ The exam cover six domains:
 ## Useful Resources
 
 - [A Cloud Guru](https://learn.acloud.guru/course/6b00566d-6246-4ebe-8257-f98f989321cf/dashboard)
+- *Docker Deep Dive* by Nigel Poulton
 - *Docker in a Month of Lunches* by Elton Stoneman
