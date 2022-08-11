@@ -18,9 +18,10 @@ I'm currently working towards the [Docker Certified Associate (DCA)](https://tra
 - [Managing Images](./managing-docker-images/)
 - [Using Docker Compose](./docker-compose/)
 - [Using Storage in Docker](./storage/)
-- Using Docker Swarm
+- [Using Docker Swarm](./docker-swarm/)
+- [Creating and Managing Services in Docker Swarm](./swarm-services/)
 - [Networking in Docker](./networking/)
-- Using Stacks
+- [Using Stacks](./docker-stacks/)
 - Improving Security in Docker
 - Using Kubernetes with Docker
 

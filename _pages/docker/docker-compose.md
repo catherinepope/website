@@ -25,7 +25,7 @@ The default name for a Docker Compose YAML file is `docker-compose.yml`. You can
 
 Here's an example of a Docker Compose file:
 
-``` YAML
+``` yaml
 
 version: "3.8"
 services:
@@ -60,7 +60,7 @@ The `services` key is where you define the different application microservices. 
 
 The top-level `networks` key tells Docker to create new networks. By default, Compose creates [bridge networks](./../networking/#single-host-bridge-networks). These are single-host networks that can connect only containers on the same Docker host. You can use the driver property to specify different network types. For example:
 
-``` YAML
+``` yaml
 networks:
   over-net:
   driver: overlay
