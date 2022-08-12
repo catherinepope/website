@@ -74,3 +74,7 @@ Alternatively, you can use:
 If you add the `-a` flag, Docker also removes all unused images (those not in use by any containers).
 
 `docker image prune -a`
+
+### Pruning Images in DTR
+
+Pruning removes the unused images automatically by setting the pruning policies. Select it from the left menu Repositories ➤ Pruning tab.
