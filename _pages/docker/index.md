@@ -22,8 +22,8 @@ I'm currently working towards the [Docker Certified Associate (DCA)](https://tra
 - [Creating and Managing Services in Docker Swarm](./swarm-services/)
 - [Networking in Docker](./networking/)
 - [Using Stacks](./docker-stacks/)
-- Improving Security in Docker
-- Using Kubernetes with Docker
+- [Securing Docker](./security/)
+- [Using Kubernetes with Docker](./kubernetes/)
 
 ## The DCA Examination
 
