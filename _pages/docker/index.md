@@ -24,6 +24,8 @@ I'm currently working towards the [Docker Certified Associate (DCA)](https://tra
 - [Securing Docker](./security/)
 - [Using Kubernetes with Docker](./kubernetes/)
 
+If you have any comments, please add an issue or make a pull request [on the GitHub repo](https://github.com/catherinepope/website) for my website.
+
 ## The DCA Examination
 
 The exam cover six domains:

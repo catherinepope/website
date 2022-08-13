@@ -3,6 +3,7 @@ layout: single
 title: Networking in Docker
 permalink: /docker/networking/
 toc: true
+breadcrumbs: true
 ---
 
 ## Overview
@@ -26,6 +27,8 @@ The Container Network Model (CNM) defines three major building blocks:
 - Sandboxes
 - Endpoints
 - Networks
+
+![Container Network Model](./../../assets/images/cnm.png)
 
 A **sandbox** is an isolated network stack containing all the networking components associated with a single container. It includes ethernet interfaces, ports, routing tables, and DNS config. Sandboxes are placed inside containers to provide network connectivity.
 
@@ -64,10 +67,11 @@ When you install Docker, you get three default networks installed. You can see t
 
 These built-in networks can't be removed.
 
-
 ### Host Networks
 
 With the host network driver, containers use the host's networking resources directly.
+
+![Host Network](./../../assets/images/host-network.png)
 
 There are no sandboxes: all containers on the host share the same network namespace. No two containers can use the same port.
 
@@ -78,6 +82,8 @@ These restrictions mean host networks are suitable only for situations where you
 Docker creates single-host bridge networks with the built-in bridge driver. This is the simplest network type.
 
 The bridge only exists on a single Docker host and can only connect containers on the same network on the same host.
+
+![Bridge Network](./../../assets/images/bridge-network.png)
 
 Every Docker host gets a default single-host bridge network called `bridge0`. This is the network to which all new containers are connected, unless you override it on the command line with the `--network` flag.
 
@@ -98,6 +104,8 @@ You can reference other containers on the same bridge network simply by using th
 ### Multi-Host Overlay Networks
 
 Overlay networks allow a single network to span multiple hosts so containers on different hosts can communicate directly. 
+
+![Overlay Network](./../../assets/images/overlay-network.png)
 
 An overlay network is created by default when you use Docker Swarm.
 
@@ -121,7 +129,7 @@ You only see overlay networks on worker nodes when they are tasked with running 
 
 To attach a service to a network, use:
 
-docker service create --name <service-name> --network <network-name> --replicas 2 <image-name>
+`docker service create --name <service-name> --network <network-name> --replicas 2 <image-name>`
 
 Standalone containers that are not part of a Swarm service cannot attach to overlay networks unless they have the attachable property. For example:
 
@@ -131,11 +139,15 @@ Standalone containers that are not part of a Swarm service cannot attach to over
 
 The built-in MACVLAN driver makes containers first-class citizens on existing physical networks by giving each one its own MAC address and IP address.
 
+![MACVLAN](./../../assets/images/macvlan.png)
+
 Due to the security requirements, MACVLAN is ideal for corporate data center networks, but probably wouldn't work in the public cloud. It mainly used where there's a need for extremely low latency.
 
 ### None Driver
 
 `None` provides no networking implementation. The container is completely isolated from other containers and the host. Although `none` does create a separate networking namespace for each container, there are no interfaces or endpoints. If you want networking, you have to set up everything yourself. 
+
+![None](./../../assets/images/none.png){: .align-center}
 
 ## Service Discovery
 

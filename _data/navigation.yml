@@ -3,7 +3,9 @@ main:
     url: /about/
   - title: "Posts"
     url: /categories/
-  - title: "Books"
+  - title: "My Books"
     url: /books/
-  - title: "Courses"
+  - title: "My Courses"
     url: /courses/
+  - title: "Docker"
+    url: /docker/
