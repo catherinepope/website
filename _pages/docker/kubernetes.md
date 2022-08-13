@@ -5,6 +5,33 @@ permalink: /docker/kubernetes/
 toc: true
 ---
 
+## Overview
+
+Kubernetes is an increasingly popular choice over [Docker Swarm](./../docker-swarm/). It's offered as a managed service by all the major public clouds. They take care of initializing the cluster (which is more complicated than in Docker Swarm) and managing the virtual machines that comprise the nodes. Kubernetes is easily extensible, so the cloud providers can integrate it with their other products, like load balancers and storage, which make it easy to deploy full-featured applications.
+
+Kubernetes also offers more sophisticated options, including blue/green deployments and automatic service scaling.
+
+Docker Swarm doesn’t exist as a managed service from the cloud providers. If you want to run a Docker Swarm cluster in the cloud, you’d need to provision the VMs and initialize the Swarm yourself. Although it could be automated, it’s not as simple as using a managed service.
+
+If you’re deploying to the cloud, Kubernetes is a simpler option, but if you’re in the datacenter, Swarm is far easier to manage.
+
+## Creating Kubernetes manifests
+
+1.  **apiversion:** - the version of the manifest file.
+    
+2. **kind:** - specifies the object type, for example, `pod`, `deployment`, `service`, `namespace`, `persistent volume`, `persistent volume claim`, or `storage class`.
+    
+3. **metadata:** - defines the label, for example, the name of the app. You can define more than one label for the object. Also, in metadata, you define the namespace name. A Kubernetes service uses labels as nametags to identify pods and it can query these labels for service discovering and load-balancing. 
+    
+4. **spec:** This is where the action is. In this top key, we define the replicas, the selector, and the template. Inside the template, we can define the image where the container will be crafted from, ports, and any other specifications to run the application correctly.
+
+
+
+## Networking in Kubernetes
+### Kubernetes Network Model
+
+Every Pod in a cluster gets its own unique cluster-wide IP address. This means you do not need to explicitly create links between Pods and you almost never need to deal with mapping container ports to host ports. This creates a clean, backwards-compatible model where Pods can be treated much like VMs or physical hosts from the perspectives of port allocation, naming, service discovery, load balancing, application configuration, and migration.
+
 ## Security in Kubernetes
 
 ### ConfigMaps
@@ -115,3 +142,7 @@ spec:
 ```
 
 Docker and Kubernetes can share secrets.
+
+## Storage in Kubernetes
+
+This is covered in [my Kubernetes notes](./../../kubernetes/storage/).

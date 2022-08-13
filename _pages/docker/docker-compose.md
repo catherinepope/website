@@ -88,6 +88,9 @@ As both services are deployed to the same `counter-net` network, they will be ab
 
 Compose uses the name of your directory as the project name. If your directory is called `counter-app`, all resources names are prepended with `counter-app_`.
 
+You can override the default name Compose uses. That's how you can run many copies of the same application in different sets of containers on a single Docker Engine.
+
+
 The command to deploy an app is:
 
 `docker-compose up &`
@@ -127,4 +130,31 @@ Use the `docker-compose down` command to stop and delete the app with a single c
 
 If the app's code resides on a Docker volume, this means we can make changes to file in the volume from outside the container. Those changes are then reflected immediately in the app.
 
+## Creating Health and Dependency Checks in Docker Compose
 
+As with Dockerfiles, you can add healthchecks to Docker Compose files:
+
+``` yaml
+healthcheck:
+  interval: 5s
+  timeout: 1s 
+  retries: 2
+  start_period: 5s
+```
+
+- `interval` - time between checks
+- `timeout` - how long the check should be allowed to run before it's considered a failure
+- `retries` - number of consecutive failures allowed before the container is flagged as unhealthy
+- `start_period` - amount of time to wait before triggering the health check - gives your app some startup time before health checks run.
+
+You can also add a health check in your Compose file for containers that don’t have one declared in the image.
+
+## Limitations of Docker Compose 
+
+You get the desired state of your application when you run `docker-compose up`, but that's where Docker Compose ends. It's not a full container platform like [Docker Swarm](./../docker-swarm/) or [Kubernetes](./../kubernetes/) - it doesn't continually run to ensure your application is maintained in its desired state.
+
+If containers fail or you remove them manually, Docker Compose won't restart or replace them until you explicitly run `docker-compose up` again.
+
+Docker Compose is great for running containers on a single machine, but that doesn't work in a production environment. If that machine goes offline, you lose all your applications.
+
+This is why you need an orchestrator, such as [Docker Swarm](./../docker-swarm/) or [Kubernetes](./../kubernetes/).

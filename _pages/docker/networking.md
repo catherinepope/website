@@ -109,6 +109,23 @@ And now you can join a service to the network:
 
 `docker service create --name overlay_nginx --network my-overlay-net nginx`
 
+If you want to encrypt the data plan, you add the` -o encrypted` flag to the command.
+
+By default, Docker overlay networks encrypt cluster management traffic, but not application traffic. You must explicitly enable encryption of application traffic.
+
+Control plane traffic is *cluster management traffic*, whereas data plane traffic is *application traffic*.
+
+You only see overlay networks on worker nodes when they are tasked with running a container on it. This reduces network gossip!
+
+#### Attaching a Service to an Overlay Network
+
+To attach a service to a network, use:
+
+docker service create --name <service-name> --network <network-name> --replicas 2 <image-name>
+
+Standalone containers that are not part of a Swarm service cannot attach to overlay networks unless they have the attachable property. For example:
+
+`docker network create -d overlay --attachable <network-name>`
 
 ### MACVLAN Networks
 
@@ -224,4 +241,3 @@ Alternatively, Netshoot is an image that comes with a variety of network trouble
 `docker run --rm --network container:custom-net-nginx nicolaka/netshoot curl localhost:80`
 
 With the command above, you're inserting a container into the sandbox of another container.
-

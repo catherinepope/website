@@ -71,6 +71,8 @@ Swarm managers include native support for high availability (HA). This means one
 
 Although you have multiple managers, only one of them is *active* at any time. This active manager is called the *leader*. Only the leader issues live commands to the Swarm. This is called a*ctive-passive multi-manager HA*.
 
+The others keep a replica of the cluster database, they can action API requests, and they can take over if the leader fails.
+
 Managers are either leaders or followers. This is Raft terminology. It uses an implementation of the Raft consensus algorithm to maintain a consistent cluster state across multiple highly available managers.
 
 Two best practices apply:
@@ -79,6 +81,10 @@ Two best practices apply:
 - Don't deploy too many managers (3 or 5 is recommended) - decision-making is faster!
 
 An odd number of managers helps ensure *quorum* and avoid split-brain conditions. A swarm cluster continues to operate during split-brain conditions, but you are no longer able to alter the configuration or add and manage application workloads.
+
+ If you permanently lose a manager node and find yourself with an even number of managers, you can promote a worker node to become a manager instead:
+
+ `docker node promote <node-name>`
 
 ### Achieving Quorum
 
@@ -145,7 +151,15 @@ Note:
 
 You can run `docker node inspect self` to view details on the current node.
 
+### Draining Nodes
+
+To drain a node (from the manager), run:
+
+`docker node update --availability drain <node-name>`
+
 To exclude a manager node from running the tasks of a service: `docker node update --availability drain manager`.
+
+Drain mode means slightly different things for workers and managers. In both cases, all the replicas running on the node are shut down and no more replicas will be scheduled for the node. However,Manager nodes remain part of the management group, so they still synchronize the cluster database, provide access to the management API, and can be the leader.
 
 Setting a node to DRAIN does not remove standalone containers from that node, such as those created with `docker run`, `docker-compose up`, or the Docker Engine API.
 
@@ -169,4 +183,12 @@ To remove a worker from the Swarm, use:
 You can add the `--force` flag to remove a manager from the Swarm. However, this doesn't reconfigure the Swarm to ensure there are enough managers to maintain quorum.
 
 The safe way to remove a manager from the Swarm is to demote it to a worker with `docker node demote <node-name>`, then run `docker swarm leave`.
+
+A manager can remove a node with:
+
+`docker node rm <node-name>`
+
+If you want to make a worker node available again, use:
+
+`docker node update --availability active <node-name>`
 

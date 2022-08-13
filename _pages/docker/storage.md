@@ -5,6 +5,8 @@ permalink: /docker/storage/
 toc: true
 ---
 
+## Overview
+
 There are two main categories of data:
 
 - persistent
@@ -22,9 +24,29 @@ Any data written to this layer is deleted when the container is deleted.
 
 This writable layer of local storage is managed on every Docker host by a storage driver.
 
+When you use the `COPY` instruction in a Dockerfile, the files and directories you copy into the image are there when you run a container from the image. 
+
+### Sharing Local Storage Between Containers
+
 You can share local storage between containers with the `--volumes-from` option in the `docker run` command. For example:
 
 `docker run -it --volumes-from first-container --name second-container ubuntu bash`
+
+### Copying Files Between Container and the Local Machine
+
+To copy files between containers, use:
+
+`docker container cp <container-name:/path/filename> <filename>`
+
+For example:
+
+`docker container cp rn1:/random/number.txt number1.txt`
+
+### Modifying Images in Containers
+
+A container can edit existing files from the image layers. However, image layers are read-only, so Docker uses a **copy-on-write** process. When the container tries to edit a file in an image layer, Docker makes a copy of that file into the writeable layers, and the edit happens there.
+
+Modifying the file in the container affects how that container runs, but it doesn’t affect the image or any other containers from that image. The changed file only lives in the writeable layer for that one container. Any new containers use the *original* image.
 
 If you want to commit information to the image before pushing it to a repo, you must use a filesystem. For example:
 

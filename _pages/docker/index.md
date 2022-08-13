@@ -4,12 +4,11 @@ title: Docker
 permalink: /docker/
 toc: true
 ---
-
 ## Introduction
 
 I'm currently working towards the [Docker Certified Associate (DCA)](https://training.mirantis.com/certification/dca-certification-exam/) qualification. To help me retain this information, I'll be adding overviews of key Docker concepts and features here.
 
-- What is Docker?
+- [What is Docker?](./intro/)
 - [Installing Docker](./installation/)
 - [Pulling Images](./pulling-docker-images/)
 - [Running Containers](./running-containers/)
@@ -39,5 +38,6 @@ The exam cover six domains:
 ## Useful Resources
 
 - [A Cloud Guru](https://learn.acloud.guru/course/6b00566d-6246-4ebe-8257-f98f989321cf/dashboard)
+- *A Complete Guide to Docker for Operations and Development: Test-Prep for the Docker Certified Associate (DCA) Exam* by Engy Fouda
 - *Docker Deep Dive* by Nigel Poulton
 - *Docker in a Month of Lunches* by Elton Stoneman

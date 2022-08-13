@@ -20,7 +20,7 @@ Define the desired state of your app in a *Compose* file, then deploy and manage
 
 The Compose file includes the entire stack of microservices that comprise the app. It also includes all the volumes, networks, secrets, and other infrastructure required by the app.
 
-Stacks build on top of Docker Swarm, so you get all those security and advanced features.
+Stacks build on top of [Docker Swarm](./../docker-swarm/), so you get all those security and advanced features.
 
 Containers --> Services --> Stacks
 
@@ -165,16 +165,38 @@ You could also use `Role.node.role != manager`.
 
 When Docker stops a container, it issues a `SIGTERM` to the application process with PID 1 inside the container. The application then has a 10-second grace period to perform any clean-up operations. If it doesn't handle the signal, it's forcibly terminated after 10 seconds with a `SIGKILL`. The `stop_grace_period` property overrides this 10-second grace period.
 
-## Deploying a Stack
+## Managing Stacks
+
+### Deploying a Stack
 
 To deploy a Stack, use:
 
 `docker stack deploy -c docker-stack.yml <stack-name>`
 
-## Removing a Stack
+### Removing a Stack
 
 To remove a Stack, use:
 
 `docker stack rm <stack-name>`
 
 When using the `rm` command, pre-existing secrets aren't deleted.
+
+## Configuring Production Rollouts with Compose
+
+Under the `deploy` key, you can configure rollouts:
+
+``` yaml
+  my-app:
+    deploy:
+      update_config:
+        parallelism: 3
+        monitor: 60s
+        failure_action: rollback
+          order: start-first
+```
+- `parallelism` - number of replicas that are replaced in parallel. The default is 1, so rollouts roll out one container at a time. Increasing the parallelism gives you a faster rollout and helps you find failures faster.
+- `monitor` - the time period the Swarm should wait to monitor new replicas before continuing with the rollout. You definitely need a delay if your images include health checks.
+- `failure_action` - action to take if the rollout fails because containers don't start, or fail health checks within the `monitor` period. The default is to pause the rollout. You can also set it to automatically roll back to the previous version.
+- `order` - order of replacing replicas. `stop-first` is the default and it ensure there are never more replicas running than the required numbers. If your app can work with extra replicas, `start-first` is better because new replicas are created and checked before the old ones are removed.
+
+You can't roll back a stack - only individual services can be rolled back to their previous state.

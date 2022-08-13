@@ -5,6 +5,8 @@ permalink: /docker/pushing-docker-images/
 toc: true
 ---
 
+## Overview
+
 Docker needs the following information when pushing an image:
 
 - Registry
@@ -24,6 +26,10 @@ This adds an additional tag, rather than overwriting the original.
 Then you can push it (push it, real good):
 
 `docker image push catherinepope/web:latest`
+
+You push an image, but Docker actually uploads the image *layers*.
+
+Layers are only uploaded to the registry if there isn't an existing match for that layer's hash.
 
 ## Pushing and Image to the DTR Repository
 

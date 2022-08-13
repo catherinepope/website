@@ -5,8 +5,11 @@ permalink: /docker/creating-docker-images/
 toc: true
 ---
 
-<!--- add overview of images --->
+## Overview
 
+With Docker, you can enjoy the benefits of a microservice architecture. Your key features are in small, isolated units that you can manage independently. That means you can test changes quickly. You’re not changing the monolith, only the containers running your feature. You can scale features up and down, and you can use different technologies to suit requirements.
+
+First, you need to containerize your app.
 
 ## Containerizing an App
 
@@ -95,6 +98,8 @@ ENTRYPOINT echo
 
 If an instruction is adding content, such as files and programs to the image, it creates a new layer. If it is adding instructions, it creates metadata.
 
+Docker images may be packaged with a default set of configuration values for the application, but you should be able to provide different configuration settings when you run a container.
+
 ## Building Images
 
 To build an image with a Dockerfile:
@@ -112,6 +117,22 @@ To see the instructions that were used to build the image:
 To inspect the layers that were created:
 
 `docker image inspect <image-name>`
+
+### Optimizing Images
+
+Dockerfiles should be optimized so the instructions are ordered by how frequently they change: instructions that are unlikely to change at the start of the Dockerfile, and instructions most likely to change at the end. 
+
+Docker assumes the layers in a Docker image follow a defined sequence. If you change a layer in the middle of that sequence, Docker doesn’t assume it can reuse the later layers in the sequence.
+
+Ideally, most builds should only need to execute the last instruction, using the cache for everything else. That saves time, disk space, and network bandwidth when you start sharing your images.
+
+To check how much disk space Docker is using, run:
+
+`docker system df`
+
+And you can clear image layers and the build cache with:
+
+`docker system prune`
 
 ### Using Multi-Stage Builds
 

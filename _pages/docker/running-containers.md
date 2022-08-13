@@ -7,13 +7,17 @@ toc: true
 
 ## Overview
 
-Images are *build-time* constructs, whereas containers are `run-time` constructs.
+Images are *build-time* constructs, whereas containers are *run-time* constructs.
+
+An image is a stack of layers. The container is the last layer at the top, where you can manipulate it, adding commands and packages on top of that base image.
+
+With the `docker commit` command or a [Dockerfile](./../creating-docker-images/#creating-a-dockerfile), you can save this new image that contains the base image, plus all the additions.
+
+## Starting Containers
 
 Use `docker container run` and `docker service create` commands to start one or more containers from a single image.
 
 You cannot delete an image until the last container using it has been stopped and destroyed.
-
-Images don't contain a kernel. All containers running on a Docker host share access to the host's kernel.
 
 Containers run until the app they are executing exits. For example, a Linux container exits when the Bash shell exits.
 
@@ -109,3 +113,22 @@ Unlike containers with the `--restart always` policy, those with an `unless-stop
 ### on-failure
 
 The `on-failure` policy restarts a containers if it exits with a non-zero exit code. It also restarts containers when the Docker daemon restarts, even containers that were in the stopped state.
+
+## Checking Container Health
+
+Docker monitors the health of your app at a basic level every time you run a container. Docker checks the process is still running. If it stops, the container goes into the exited state.
+
+This checks the process is running, but not whether the app is actually healthy. For example, it could be returning a 503 error to every request.
+
+You can add a `HEALTHCHECK` instruction to the [Dockerfile](./../creating-docker-images/). This tells the runtime exactly how to check whether the app in the container is still healthy.
+
+The `HEALTHCHECK` instruction specifies a command for Docker to run inside the container, which returns a status code. For example:
+
+`HEALTHCHECK CMD curl --fail http://localhost/health`
+
+The health check makes an HTTP call to the `/health` endpoint, which tests whether the app is healthy. Using the `--fail` parameter means the `curl` command passes the status code on to Docker. If the request succeeds, it returns `0`.
+
+Docker runs that command in the container at a timed interval. If the status code says everything is OK, the container is healthy. If the status code denotes failure several times in a row, the container is marked as unhealthy.
+
+Docker can’t be sure that taking action to fix the unhealthy container won’t make the situation worse, so it broadcasts that the container is unhealthy but leaves it running. The health check continues, too. If the failure is temporary and the next check passes, the container status flips to healthy again.
+
