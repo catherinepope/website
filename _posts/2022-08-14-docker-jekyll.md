@@ -37,7 +37,6 @@ docker run --rm -it \
   -p 4000:4000  jekyll/jekyll:3.8 \
   --name website
   bundle exec jekyll serve
-
 ```
 
 This command:
