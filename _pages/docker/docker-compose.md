@@ -54,7 +54,7 @@ volumes:
 
 ```
 
-The `version` key is mandatory. This defines the version of the Compose file format (i.e. the API), not the version of Docker Compose or Docker Engine.
+The `version` key is no longer mandatory, but you'll still see it around. This defines the version of the Compose file format (i.e. the API), not the version of Docker Compose or Docker Engine.
 
 The `services` key is where you define the different application microservices. In this case, there are two microservices: `web-fe` and `redis`.
 
@@ -122,9 +122,9 @@ Use `docker-compose top` to list the processes running inside of each service (c
 
 To stop a Compose app, use `docker-compose stop`. This command just stops the app's containers. The application definition remains on the system.
 
-You can delete a stopped Compose app with `docker-compose rm`. This deletes the containers and networks the app is using, but doesn't delete volumes or images.
-
 You can restart the app with the `docker-compose restart` command.
+
+You can delete a stopped Compose app with `docker-compose rm`. This deletes the containers and networks the app is using, but doesn't delete volumes or images.
 
 Use the `docker-compose down` command to stop and delete the app with a single command. Then only the images, volumes, and source code remain.
 
