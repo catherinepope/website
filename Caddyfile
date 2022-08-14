@@ -1,0 +1,2 @@
+reverse_proxy host.docker.internal:4000
+tls internal
