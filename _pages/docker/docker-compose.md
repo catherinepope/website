@@ -106,12 +106,6 @@ Once the app is built and running, you can use normal `docker` commands to view 
 
 ## Managing an App with Compose
 
-To stop an application, use `docker-compose down`.
-
-This command doesn't delete any volumes. This is because volumes are intended to be long-term persistent data stores. Their lifecycle is entirely decoupled from the applications they serve.
-
-Also, any images that were built or pulled as part of the `docker-compose up` operation will still be present on the system. This means future deployments of the app will be faster.
-
 To see the current state of the app, use `docker-compose ps`.
 
 ![Output of docker-compose ps](./../../assets/images/docker-compose-ps.png)
@@ -126,7 +120,7 @@ You can restart the app with the `docker-compose restart` command.
 
 You can delete a stopped Compose app with `docker-compose rm`. This deletes the containers and networks the app is using, but doesn't delete volumes or images.
 
-Use the `docker-compose down` command to stop and delete the app with a single command. Then only the images, volumes, and source code remain.
+Use the `docker-compose down` command to stop and delete the app with a single command. Then only the images, volumes, and source code remain. As the images are still present, future deployments will be faster.
 
 If the app's code resides on a Docker volume, this means we can make changes to file in the volume from outside the container. Those changes are then reflected immediately in the app.
 
