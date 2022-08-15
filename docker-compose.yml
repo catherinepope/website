@@ -1,7 +1,7 @@
 services:
   jekyll:
-    container_name: website
     image: bretfisher/jekyll-serve
+    # build: .
     ports:
       - 4000:4000
     volumes:

@@ -60,12 +60,12 @@ ENTRYPOINT ["node", "./app.js"]
 
 `RUN` runs a command and creates a new layer above the base layer (typically downloading and installing software, such as Node).
 
-`CMD`: there are several difference between CMD and RUN:
+`CMD`: there are several difference between `CMD` and `RUN`:
 
-- The CMD is executed when you run a container from your image. The RUN instruction is executed during the build time of the image.
-- You can have only one CMD instruction in a Dockerflle. If you add more, only the last one takes effect. You can have as many RUN instructions as you need in the same Dockerfile.
+- The `CMD` is executed when you run a container from your image. The `RUN` instruction is executed during the build time of the image.
+- You can have only one `CMD` instruction in a Dockerflle. If you add more, only the last one takes effect. You can have as many `RUN` instructions as you need in the same Dockerfile.
 - You can add a health check to the CMD instruction, for example, `HEALTHCHECK CMD curl --fail http://localhost/health || exit 1`, which tells the Docker engine to kill the container with exit status 1 if the container health fails.
-- The CMD syntax uses this form [“param”, param”, “param”] when used in conjunction with the ENTRYPOINT instruction. It should be in the following form CMD [“executable”, "param1”, “param2”…] if used by itself.
+- The `CMD` syntax uses this form [“param”, param”, “param”] when used in conjunction with the `ENTRYPOINT` instruction. It should be in the following form CMD [“executable”, "param1”, “param2”…] if used by itself.
 
 Example: `CMD "echo" "Hello World!"`
 
@@ -99,6 +99,28 @@ ENTRYPOINT echo
 If an instruction is adding content, such as files and programs to the image, it creates a new layer. If it is adding instructions, it creates metadata.
 
 Docker images may be packaged with a default set of configuration values for the application, but you should be able to provide different configuration settings when you run a container.
+
+### Understanding the Interaction Between CMD and ENTRYPOINT
+
+Both `CMD` and `ENTRYPOINT` instructions define what command gets executed when running a container. There are few rules that describe their co-operation:
+
+1. Dockerfile should specify at least one `CMD` or `ENTRYPOINT` command.
+
+2. `ENTRYPOINT` should be defined when using the container as an executable.
+
+3. `CMD` should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
+
+4. `CMD` is overridden when running the container with alternative arguments from the `docker run` command.
+
+The table below shows what command is executed for different `ENTRYPOINT` / `CMD` combinations:
+
+
+|                            | No ENTRYPOINT              | ENTRYPOINT exec_entry p1_entry | ENTRYPOINT [“exec_entry”, “p1_entry”]          |   |   |   |   |   |   |
+|----------------------------|----------------------------|--------------------------------|------------------------------------------------|---|---|---|---|---|---|
+| No CMD                     | error, not allowed         | /bin/sh -c exec_entry p1_entry | exec_entry p1_entry                            |   |   |   |   |   |   |
+| CMD [“exec_cmd”, “p1_cmd”] | exec_cmd p1_cmd            | /bin/sh -c exec_entry p1_entry | exec_entry p1_entry exec_cmd p1_cmd            |   |   |   |   |   |   |
+| CMD [“p1_cmd”, “p2_cmd”]   | p1_cmd p2_cmd              | /bin/sh -c exec_entry p1_entry | exec_entry p1_entry p1_cmd p2_cmd              |   |   |   |   |   |   |
+| CMD exec_cmd p1_cmd        | /bin/sh -c exec_cmd p1_cmd | /bin/sh -c exec_entry p1_entry | exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd |   |   |   |   |   |   |       
 
 ## Building Images
 

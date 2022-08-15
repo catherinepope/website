@@ -26,6 +26,33 @@ This writable layer of local storage is managed on every Docker host by a storag
 
 When you use the `COPY` instruction in a Dockerfile, the files and directories you copy into the image are there when you run a container from the image. 
 
+### Using `tmpfs` Mounts
+
+If you're running Docker on Linux, you can use `tmpfs` mounts. When you create a container with a `tmpfs` mount, the container can create files outside the container's writable layer.
+
+A `tmpfs` mount is temporary and persisted only in the host memory. When the container stops, the `tmpfs` mount is removed. 
+
+This is useful to temporarily store sensitive files you don't want to persist in either the host or in the container's writable layer.
+
+The main limitations of `tmpfs` are:
+
+- You can't share `tmpfs` between containers.
+- This functionality is only available if you're running Docker on Linux.
+
+To use a `tmpfs`, use the following format:
+
+``` shell
+docker run -d \
+  -it \
+  --name tmptest \
+  --mount type=tmpfs,destination=/app \
+  nginx:latest
+```
+
+There is no `source` for `tmpfs` mounts.
+
+
+
 ### Sharing Local Storage Between Containers
 
 You can share local storage between containers with the `--volumes-from` option in the `docker run` command. For example:

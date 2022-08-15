@@ -91,6 +91,15 @@ Docker uses seccomp, in filter mode, to limit the syscalls a container can make 
 
 All new containers get a default seccomp profile, configured with sensible defaults. You can customize these profiles, and also pass a flag to Docker so containers can be started without a seccomp profile.
 
+### SELinux
+
+SELinux, or Security-Enhanced Linux, is a part of the Linux security kernel that acts as a protective agent on servers. In the Linux kernel, SELinux relies on mandatory access controls (MAC) that restrict users to rules and policies set by the system administrator. SELinux acts under the least-privilege model.
+
+The interaction between SELinux policy and Docker is focused on two concerns:
+
+- protection of the host
+- protection of containers from one another.
+
 ## Securing Docker Swarm
 
 By default, Swarm Mode includes:

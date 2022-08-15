@@ -10,7 +10,7 @@ toc: true
 
 ## Introduction
 
-Jekyll is a beautifully simple way to build and deploy a static website. Well, it's simple *once* you've got everything installed and configured. Unless you're already confident with Ruby, it'll probably take you most of a soggy weekend to get it running consistently.
+[Jekyll](https://jekyllrb.com/) is a beautifully simple way to build and deploy a static website. Well, it's simple *once* you've got everything installed and configured. Unless you're already confident with Ruby, it'll probably take you most of a soggy weekend to get it running consistently.
 
 Although the local installation is working well for me, I'm nervous it'll break. I'm already encountering a few Ruby conflicts with other projects. Resolving those issues isn't my idea of fun. Given I've been doing a lot of work with Docker lately, I decided to see whether I could run my site as a container instead. Plot spoiler: yes, I could!
 

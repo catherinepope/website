@@ -75,7 +75,20 @@ The alternative mode is *host mode*, which only publishes the service on Swarm n
 
 To scale a service, use:
 
-`docker service scale <service-name>`
+`docker service scale <service-name>=<number>`
+
+For example:
+
+`docker service scale frontend=5`
+
+You can also use the `docker service update` command. For example:
+
+`docker service update --replicas=5 frontend`
+
+And it's possible to scale multiple services with the same command:
+
+`docker service scale backend=3 frontend=5`
+
 
 Running `docker service ps` should show the replicas have been created and are distributed evenly:
 

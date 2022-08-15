@@ -39,6 +39,8 @@ A **sandbox** is an isolated network stack containing all the networking compone
 - **Network Driver**: handles the actual implementation of CNM concepts.
 - **IP Address Management (IPAM)**: automatically allocates subnets and IP addresses for networks and endpoints.
 
+On Linux, Docker manipulates `iptables` rules to provide network isolation. 
+
 ## Drivers
 
 Drivers implement the data plane. Connectivity, isolation, and network creation are all handled by drivers.
