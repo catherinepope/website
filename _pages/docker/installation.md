@@ -9,8 +9,21 @@ toc: true
 
 There are two Docker editions:
 
-- Community Edition (CE, entirely free)
+- Community Edition (CE, free)
 - Enterprise Edition (EE, not free)
+
+
+## Docker Community Edition
+
+This version is free for testing and development purposes. You can get Docker CE for:
+
+- Mac
+- Windows
+- Linux
+
+You can check everything is installed correctly by running the `docker version` command. This confirms the CLI can talk to the Docker Engine.
+
+To see the Docker configuration, run `docker info`.
 
 ## Docker Enterprise Edition
 

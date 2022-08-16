@@ -165,7 +165,7 @@ Port mappings let you map a container to a port on the Docker host. Any traffic 
 
 You can find a container's port with the following command:
 
-`docker port web`
+`docker container port <container-name>`
 
 Only a single container can bind to any port on the host. This means no other containers on that host can bind to that specific port. This is one of the reasons why single-host bridge networks are only useful for local development and very small applications.
 
@@ -214,7 +214,7 @@ To inspect a network:
 
 To create a network:
 
-`docker network create -d bridge <network-name>`
+`docker network create -d <network-type> <network-name>`
 
 Attach a new container to a network:
 
@@ -235,6 +235,48 @@ You can also create a network alias for a container. This means it can be refere
 To remove a network:
 
 `docker network rm <network-name>`
+
+You can find a container's IP address with the following command:
+
+{% raw %}
+
+`docker container inspect --format "{{ .NetworkSettings.IPAddress}}" <container-name>`
+
+{% endraw %}
+
+## Using Network Aliases
+
+You can use network aliases to assign additional names to containers. Multiple containers can share a network alias, which provides a very basic load balancing solution.
+
+For example:
+
+``` bash
+$ docker network create my-net
+$ docker container run -d net my-net --net-alias search elasticsearch: 2
+$ docker container run -d net my-net --net-alias search elasticsearch: 2
+```
+
+The example above creates a network, then runs two containers on that network, both sharing the network alias `search`.
+
+Now run another container on the same network to perform an nslookup on `search`:
+
+`docker container run --rm --net my-net alpine:3.10 nslookup search`
+
+You'll see both containers:
+
+![nslookup on network alias](./../../assets/images/net-alias.png)
+
+Now run another container to perform a curl command on `search`:
+
+`docker container run --rm --net my-net centos curl -s search:9200`
+
+And then run it again.
+
+The first time it shows one container; the second time the other container:
+
+![DNS round robin](./../../assets/images/round-robin.png)
+
+It's flipping between the containers sharing the network alias `search`. This is entirely random, though - it's not a proper load balancer. 
 
 ## Network Troubleshooting
 

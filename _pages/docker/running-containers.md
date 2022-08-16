@@ -23,6 +23,14 @@ Containers run until the app they are executing exits. For example, a Linux cont
 
 ## Managing Containers
 
+To see the process list across *all* containers, use: `docker ps`.
+
+To see the process list in a *specific* container, use: `docker container top <container-name>`.
+
+For live stats across *all* containers, use: `docker container stats`.
+
+For live stats on a *specific* container, use: `docker container stats <container-name>`.
+
 To see everything that's been executed in the container, use:
 
 `docker logs <container-name>`
@@ -40,6 +48,8 @@ You can also pause and unpause a container from another terminal:
 To restart the container:
 
 `docker container start <container-name>`
+
+If you want to restart the container in interactive mode, use: `docker container start -ai <container-name>`. The `a` stands for *attach* and the `i` for *interactive*.
 
 To remove the container:
 

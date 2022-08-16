@@ -15,7 +15,7 @@ With Docker, you can migrate each part of your application to a container, and t
 
  - **Docker Engine** is the management component of Docker. It looks after the local image cache, downloading images when you need them, and reusing them if they’re already downloaded. It also works with the operating system to create containers, virtual networks, and all the other Docker resources. The Engine is a background process that is always running (like a Linux daemon or a Windows service).
  - Docker Engine makes all the features available through the **Docker API**, which is a standard HTTP-based REST API. You can configure the Engine to make the API accessible only from the local computer (which is the default), or make it available to other computers on your network.
- - The **Docker command-line interface (CLI)** is a client of the Docker API. When you run Docker commands, the CLI actually sends them to the Docker API, and the Docker Engine does the work.
+ - The **Docker command-line interface (CLI)** is a client of the Docker API. When you run Docker commands, the CLI actually sends them to the Docker API, and the Docker Engine does the work. Docker commands are in the following format: `docker <command> <sub-command> (options)`.
 
 The Docker Engine uses a component called containerd to actually manage containers, and containerd in turn makes use of operating system features to create the virtual environment that is the container.
 
