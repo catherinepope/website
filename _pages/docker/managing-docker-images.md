@@ -75,6 +75,15 @@ If you add the `-a` flag, Docker also removes all unused images (those not in us
 
 `docker image prune -a`
 
+To really clear some space, use: `docker system prune`. This command removes:
+
+- all stopped containers
+- all networks not used by at least one container
+- all dangling images
+- all dangling build cache
+
+This is the nuclear option!
+
 ### Pruning Images in DTR
 
 Pruning removes the unused images automatically by setting the pruning policies. Select it from the left menu Repositories ➤ Pruning tab.

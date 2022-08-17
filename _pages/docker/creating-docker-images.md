@@ -35,7 +35,7 @@ Here's a simple example of a Dockerfile:
 ```
 FROM alpine
 
-LABEL maintainer="me@catherinepope.com"
+LABEL maintainer="docker@catherinepope.com"
 
 # Install Node and NPM
 RUN apk add --update nodejs npm curl
@@ -126,7 +126,7 @@ The table below shows what command is executed for different `ENTRYPOINT` / `CMD
 
 To build an image with a Dockerfile:
 
-`docker image build -t test:latest .`
+`docker image build -t <image-name>:<tag> .`
 
 To check the image is created:
 

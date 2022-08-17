@@ -23,6 +23,8 @@ You need to retag an existing image to include your Docker ID, e.g.:
 
 This adds an additional tag, rather than overwriting the original.
 
+Tags are effectively a pointer to an image commit.
+
 Then you can push it (push it, real good):
 
 `docker image push catherinepope/web:latest`
