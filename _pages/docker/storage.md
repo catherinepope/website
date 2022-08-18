@@ -16,6 +16,10 @@ Every Docker container gets its own non-persistent storage. This is created auto
 
 To persist data, a container needs to store it in a volume. Volumes are separate objects whose lifecycles are decoupled from containers.
 
+### The Union File System
+
+In Docker, the *Union File System* allows files and directories of separate file systems, known as branches, to be transparently overlaid, forming a single coherent file system. Contents of directories which have the same path within the merged branches are seen together in a single merged directory, within the new, virtual filesystem.
+
 ## Non-Persistent Data
 
 Every Docker container is created by adding a thin read-write layer on top of the read-only image on which it's based. The writable layers exist in the filesystem of the Docker host: `/var/lib/docker/<storage-driver>`.
@@ -50,8 +54,6 @@ docker run -d \
 ```
 
 There is no `source` for `tmpfs` mounts.
-
-
 
 ### Sharing Local Storage Between Containers
 
@@ -114,7 +116,19 @@ DeviceMapper supports two modes:
 - Requires an additional storage device.
 - Good performance, use for production.
 
+## Using Bind Mounts
+
+Bind mounts are an easy way to get data from your host onto a container. For example, you could run a Jekyll container and mount the static files from your host.
+
+A bind mount maps an *existing* host file or directory to a container file or directory. Essentially, it's just two locations pointing to the same file(s). Bind mounts skip UFS, and host files replace any in the container. Once the bind mount is removed, the container's files are used again.
+
+You can't create a bind mount in a Dockerfile, only with a `docker container run` command. For example:
+
+`docker container run -v /users/username/stuff:/path/on/container`
+
 ## Using Volumes
+
+Volumes make a special location outside of a container's UFS.
 
 Volumes are the recommended way to persist data in containers. Here's the process:
 
@@ -159,7 +173,7 @@ By default, Docker creates new volumes with the built-in `local` driver. As the 
 
 Third-party volume drivers are available as plugins. Once the plugin is registered, you can create new volumes from the storage system using docker volume create with the `-d` flag.
 
-Use docker volume inspect to see what driver it's using and where the volume exists.
+Use `docker volume inspect` to see what driver it's using and where the volume exists.
 
 All volumes created with the local driver get their own directory under `/var/lib/docker/volumes` on Linux. This means you can see them in your Docker host's filesystem.
 
@@ -167,9 +181,15 @@ All volumes created with the local driver get their own directory under `/var/li
 
 To mount a volume to a container, use the following command:
 
-`docker container run -dit --name voltainer --mount source=bizvol,target=/vol alpine`
+`docker container run -d --name <container-name> -v <vol-name>:</var/lib/path> <image-name>`
 
-If you specify a volume that doesn't exist, Docker creates it for you.
+If you specify a volume that doesn't exist, Docker creates it for you. However, when you create a volume with a `docker run` command, you can't add custom drivers or labels.
+
+When using images that require a specific volume, you can find this information on Docker Hub. For example, `postgres` needs a `VOLUME` path of `/var/lib/postgresql/data`:
+
+`docker run -d --name postgres -v my-db:/var/lib/postgresql/data postgres:9.6.1`
+
+Incidentally, when running database containers, you normally need to add a password through an environment variable: `-e POSTGRES_PASSWORD=password`.
 
 
 ### Removing Volumes
