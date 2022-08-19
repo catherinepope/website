@@ -11,7 +11,14 @@ Docker Compose deploys and manages *multi-container applications* (microservices
 
 In contrast, Docker Swarm deploys and manages multi-container apps on Docker nodes running in **swarm mode**.
 
-Docker Compose allows you to describe an entire app in a single declarative configuration file and deploy it with a single command.
+Docker Compose allows you to describe an entire app in a single declarative configuration file and deploy it with a single command. In other words, include all your run commands in one file, rather than having to enter them each time you run a container. 
+
+This is much more convenient than setting up VMs with Vagrant. For example, to test an app, you'd just need to:
+
+- clone a git repo (containing a Dockerfile and a docker-compose.yml)
+- run `docker-compose up`
+
+Then you have access to everything without having to install and configure databases.
 
 Once the app is deployed, you can manage its entire lifecycle with a simple set of commands. And the configuration file can be stored in a VCS.
 
@@ -58,6 +65,31 @@ The `version` key is no longer mandatory, but you'll still see it around. This d
 
 The `services` key is where you define the different application microservices. In this case, there are two microservices: `web-fe` and `redis`.
 
+You can include a `depends_on` key to specify dependencies. For example:
+
+``` yaml
+  depends_on:
+    - mysql-primary
+    - mysql-secondary
+
+```
+
+And you can add environment variables, such as passwords:
+
+``` yaml
+  environment:
+    - MYSQL_PASSWORD=password
+    - POSTGRES_PASSWORD=password
+```
+
+These can also be specified in dictionary format. For example:
+
+``` yaml
+  environment:
+    MYSQL_PASSWORD: password
+    POSTGRES_PASSWORD: password
+```
+
 The top-level `networks` key tells Docker to create new networks. By default, Compose creates [bridge networks](./../networking/#single-host-bridge-networks). These are single-host networks that can connect only containers on the same Docker host. You can use the driver property to specify different network types. For example:
 
 ``` yaml
@@ -90,16 +122,13 @@ Compose uses the name of your directory as the project name. If your directory i
 
 You can override the default name Compose uses. That's how you can run many copies of the same application in different sets of containers on a single Docker Engine.
 
-
 The command to deploy an app is:
 
-`docker-compose up &`
-
-The ampersand forces Compose to output all messages to the terminal window.
+`docker-compose up`
 
 You can add the `-d` flag to run the app in the background.
 
-Once the app is built and running, you can use normal `docker` commands to view the images, containers, networks, and volumes created by Compose.
+Once the app is built and running, you can use normal `docker` commands to view the images, containers, networks, and volumes created by Compose. For example:
 
 - docker volume ls
 - docker network ls
@@ -124,6 +153,10 @@ Use the `docker-compose down` command to stop and delete the app with a single c
 
 If the app's code resides on a Docker volume, this means we can make changes to file in the volume from outside the container. Those changes are then reflected immediately in the app.
 
+To remove volumes when you stop the app, use the following command:
+
+`docker-compose down -v`
+
 ## Creating Health and Dependency Checks in Docker Compose
 
 As with Dockerfiles, you can add healthchecks to Docker Compose files:
@@ -142,6 +175,29 @@ healthcheck:
 - `start_period` - amount of time to wait before triggering the health check - gives your app some startup time before health checks run.
 
 You can also add a health check in your Compose file for containers that don’t have one declared in the image.
+
+## Building an Image with Docker Compose
+
+If you include a `build` key, in your docker-compose.yml file, you can build an image before running it:
+
+``` yaml
+version: '2'
+
+services:
+  frontend:
+    image: my-fe
+    build: .
+```
+
+In the example above, Docker checks for the image in cache. If it's not there, Docker looks for a Dockerfile in the current directory and builds the image.
+
+To ensure any existing images are rebuilt, use:
+
+`docker-compose up --build` (you can also specify a service name )
+
+If you don't specify a name for your image, Docker assigns one based on your project name. In this case, you can also remove the image with the following command:
+
+`docker-compose down --rmi local`
 
 ## Limitations of Docker Compose 
 

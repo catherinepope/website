@@ -39,6 +39,7 @@ The exam cover six domains:
 
 ## Useful Resources
 
+- [Docker Mastery course by Bret Fisher](https://www.udemy.com/course/docker-mastery/)
 - [A Cloud Guru](https://learn.acloud.guru/course/6b00566d-6246-4ebe-8257-f98f989321cf/dashboard)
 - *A Complete Guide to Docker for Operations and Development: Test-Prep for the Docker Certified Associate (DCA) Exam* by Engy Fouda
 - *Docker Deep Dive* by Nigel Poulton
