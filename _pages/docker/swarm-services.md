@@ -13,7 +13,7 @@ Services allow you to specify most of the familiar container options, such as na
 
 The steps when creating a service process in swarm mode are:
 
-Docker API > orchestrator > allocator > dispatcher > scheduler
+Docker API > Orchestrator > Allocator > Dispatcher > Scheduler
 
 A dispatcher determines on which node a task is scheduled.
 
@@ -48,6 +48,14 @@ For more detailed information about a service, use:
 `docker service inspect <service-name>`
 
 Add the `--pretty` flag to limit the output to the most important information.
+
+### Attaching a Service to a Network
+
+`docker service create <service-name> --network <network-name> <image-name>`
+
+You can also attach the service to multiple networks:
+
+`docker service create <service-name> --network <network1-name> --network <network2-name> <image-name>`
 
 ### Replicated vs Global Services
 
@@ -157,7 +165,52 @@ You can:
 - Tail the logs `--tail`
 - Get extra details `--details`
 
+## Example of Using Services Together
 
+This example is from Bret Fisher's excellent *Docker Mastery* course. The aim is to create this app architecture with services:
+
+![App architecture](./../../assets/images/architecture.png)
+
+Here are the commands to create it:
+
+``` sh
+
+docker network create frontend -d overlay
+
+docker network create backend -d overlay
+
+docker service create --name vote --network frontend -p 80:80 --replicas 2 bretfisher/examplevotingapp_vote
+
+docker service create --name redis --network frontend redis:3.2
+
+docker service create --name worker --network frontend --network backend bretfisher/examplevotingapp_worker
+
+docker service create --name db --network backend -e POSTGRES_HOST_AUTH_METHOD=trust --mount type=volume,source=db-data,target=/var/lib/postgresql/data postgres:9.4
+
+docker service create --name result -p 5001:80 --network backend bretfisher/examplevotingapp_result
+
+```
+
+Bret also shares a mightily useful Docker Visualizer image so you can see what you've created. You need to run it as a service on a Swarm Manager. I don't think it'll work on a VM, as you need access to the Docker socket. I used it on [Docker Playground](https://www.play-with-docker-com).
+
+Here's the command:
+
+``` sh
+docker service create \
+    --name=viz \
+    --publish=8080:8080/tcp \
+    --constraint=node.role==manager \
+    --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+    bretfisher/visualizer
+```
+
+And here's what the Visualizer looks like:
+
+![Docker Visualizer](./../../assets/images/docker-visualizer.png)
+
+Nice!
+
+To avoid having to type very looooong service commands, you can [use a Stack](./../docker-stacks/) instead.
 
 
 

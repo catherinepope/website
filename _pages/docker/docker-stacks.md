@@ -7,7 +7,7 @@ toc: true
 
 ## Overview
 
-Stacks are groups of interrelated services that share dependencies and can be scaled together.
+Stacks are groups of interrelated services that share dependencies and can be scaled together. Effectively, Stacks are a production-grade version of Docker Compose.
 
 Stacks simplify application management by providing:
 
@@ -16,7 +16,7 @@ Stacks simplify application management by providing:
 - scaling operations
 - health checks
 
-Define the desired state of your app in a *Compose* file, then deploy and manage it with the `docker stack` command.
+Define the desired state of your app in a *Compose* file, then deploy and manage it with the `docker stack` command. You can use your existing Compose file, but it won't recognize the `build` command. Building shouldn't happen in production (that normally happens at the CI/CD stage). You can leave the `build` command, though, as it's just ignored for Stacks. Equally, Docker Compose will ignore the `deploy` key that you need for Docker Stacks - this means you can use the same file for both Compose and Stacks.
 
 The Compose file includes the entire stack of microservices that comprise the app. It also includes all the volumes, networks, secrets, and other infrastructure required by the app.
 
@@ -172,6 +172,8 @@ When Docker stops a container, it issues a `SIGTERM` to the application process 
 To deploy a Stack, use:
 
 `docker stack deploy -c docker-stack.yml <stack-name>`
+
+Any created components of the Stack - e.g. networks - are prefixed with the Stack name.
 
 ### Removing a Stack
 

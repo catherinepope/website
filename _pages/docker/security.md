@@ -225,7 +225,6 @@ A **grant** defines who (subject) has how much access (role) to a set of resourc
 
 For example the *masters* team has all to all *secret* operations in the *kubeadmins* collection.
 
-
 ## Docker Secrets
 
 Secrets are:
@@ -235,4 +234,53 @@ Secrets are:
 - mounted in containers to in-memory filesystems
 - operate under least-privilege model
 
+### Creating Secrets
+
+To create a secret, use the following command format:
+
+``` sh
+echo "This is an external secret" | docker secret create my_external_secret -
+```
+
+Don't miss that dash at the end!
+
+To list secrets, use:
+
+`docker secret ls`
+
+#### Using Secrets with Services
+
 You can attach secrets to services by specifying the `--secret` flag to the `docker service create` command.
+
+To add or remove secrets to or from an existing service, use:
+
+``` sh
+docker service update --secret-add <secret-name>
+
+docker service update --secret-rm <secret-name>
+```
+#### Using Secrets with Stacks
+
+You need to use at least version 3.1 for secrets.
+
+Here's an example:
+
+``` yaml
+version: '3.1'
+services:
+    psql:
+        image: postgres
+        secrets:
+            - psql_user
+            - psql_password
+    
+    secrets:
+        psql_user:
+            file: ./psql_user.txt
+        psql_password:
+            external: true
+```
+
+The `psql_user` secret is created from a file, while `psql_password` is an existing secret.
+
+Removing a Stack also removes the secrets.

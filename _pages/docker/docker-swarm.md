@@ -12,6 +12,8 @@ Docker Swarm is:
 - An enterprise-grade secure cluster of Docker hosts.
 - An engine for orchestrating microservices apps.
 
+Essentially it's a clustering solution built inside Docker. Swarm takes Docker beyond being just a container runtime.
+
 Swarm groups one or more Docker nodes and lets you manage them as a cluster. You get:
 
 - an encrypted distributed cluster store
@@ -41,7 +43,7 @@ Swarm uses TLS to encrypt communications, authenticate nodes, and authorize role
 
 On a Swarm, the atomic unit of scheduling is the service. This wraps some advanced features around containers, including scaling, rolling updates, and simple rollbacks.
 
-A service is essentially an enhanced container.
+A service is essentially an enhanced container. Whereas individual containers have their own identities, containers in a service are assigned a number based on the service name. It's like the famous computing analogy of pets vs cattle. If you have hundreds of containers (or cows), you don't want to have to shout for them by individual names.
 
 ## Creating a Swarm
 
@@ -63,7 +65,7 @@ To list the nodes in the Swarm, use:
 
 ![Output of docker node ls](./../../assets/images/docker-node-ls.png)
 
-The asterisk denotes which node you are logged into and executing commands from.
+The asterisk denotes which node you are logged into and executing commands from. Only managers can view information about the Swarm.
 
 ## Maintaining High Availability
 
@@ -172,7 +174,6 @@ To add a label to a node, use:
 To view the label, use:
 
 `docker node inspect <node-name>`
-
 
 ### Leaving a Swarm
 
