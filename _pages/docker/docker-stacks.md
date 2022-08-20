@@ -154,19 +154,16 @@ The environment key lets you inject environment variables into services replicas
 The constraints key defines a placement constraint. This ensures replicas for this service always run on Swarm worker nodes:
 
 ``` yaml
-
 deploy:
   placement:
     constraints:
       - 'node.role == worker'
-
 ```
 You could also use `Role.node.role != manager`.
 
 When Docker stops a container, it issues a `SIGTERM` to the application process with PID 1 inside the container. The application then has a 10-second grace period to perform any clean-up operations. If it doesn't handle the signal, it's forcibly terminated after 10 seconds with a `SIGKILL`. The `stop_grace_period` property overrides this 10-second grace period.
 
 ## Managing Stacks
-
 ### Deploying a Stack
 
 To deploy a Stack, use:
@@ -174,6 +171,10 @@ To deploy a Stack, use:
 `docker stack deploy -c docker-stack.yml <stack-name>`
 
 Any created components of the Stack - e.g. networks - are prefixed with the Stack name.
+
+### Updating a Stack
+
+There's no specific command for updating a stack - you just deploy it again.
 
 ### Removing a Stack
 

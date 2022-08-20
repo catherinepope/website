@@ -11,6 +11,8 @@ Services are containers in production.
 
 Services allow you to specify most of the familiar container options, such as name, port mappings, and images. But they also add important cloud-native features, such as *desired state* and automatic reconciliation. The **orchestrator** keeps the desired state defined in a service.
 
+Services automatically replace tasks if they fail a healthcheck.
+
 The steps when creating a service process in swarm mode are:
 
 Docker API > Orchestrator > Allocator > Dispatcher > Scheduler
@@ -102,6 +104,24 @@ Running `docker service ps` should show the replicas have been created and are d
 
 ![Output of docker service ps](./../../assets/images/docker-service-scale.png)
 
+### Updating a Service
+
+To update the image:
+
+`docker service update --image <new-image-name> <service-name>`
+
+To add an environment variable:
+
+`docker service update --env-add <ENV-NAME>=<env-value> <service-name>`
+
+To update a port, you first need to remove the old one:
+
+`docker service update --publish-rm 8080 --publish-add 8081 <service-name>`
+
+If you've recently added some new nodes to your Swarm and want to distribute your services more evenly, here's a nifty command:
+
+`docker service update --force <service-name>`
+
 ### Removing a Service
 
 To remove a service, use:
@@ -124,15 +144,11 @@ Use `docker service inspect --pretty <service-name>` to get an overview.
 
 Future updates will automatically use these settings, unless you override them as part of the `docker service update` command.
 
-## Commands for Services
+## Additional Commands for Services
 
 To add a placement preference: `docker service update --placement-pref-add`
 
 To add or update a mount on an existing service: `docker service update --mount-add`
-
-To remove a published port: `docker service update --publish-rm`
-
-To publish container port(s) on an existing service: `--publish-add`
 
 To set minimum and maximum memory: `--memory 4GB --memory-reservation 2GB`
 

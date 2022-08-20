@@ -199,6 +199,58 @@ If you don't specify a name for your image, Docker assigns one based on your pro
 
 `docker-compose down --rmi local`
 
+## Overriding docker-compose Files
+
+If you want to get fancy, you can use a basic `docker-compose.yml` file and then override it with values in an additional file called `docker-compose.override.yml`.
+
+Here's the basic `docker-compose.yml`:
+
+``` yaml
+version: '3.1'
+
+services:
+
+  drupal:
+    image: drupal
+
+  postgres:
+    image: postgres
+```
+
+You can then include additional configuration with a `docker-compose.override.yml` file:
+
+``` yaml
+version: '3.1'
+
+services:
+
+  drupal:
+    ports:
+      - "8080:80"
+    volumes:
+      - drupal-modules:/var/www/html/modules
+
+  postgres:
+    environment:
+      - POSTGRES_PASSWORD=password
+```
+
+There are no images specified in the second file - that's because they're already in the main `docker-compose.yml` file.
+
+You could use a similar system for using different values for testing and production environments. For example, a `docker-compose.test.yml` file would use test data, rather than mounting a real volume. This would make it faster. The `docker-compose.prod.yml` then attaches the real volumes and live databases.
+
+To run these custom files on top of the basic file, use the following format:
+
+`docker-compose -f docker-compose.yml docker-compose.test.yml -d`
+
+You can also view the consolidated file before you deploy it:
+
+`docker-compose -f docker-compose.yml docker-compose.test.yml config`
+
+To actually consolidate those two files into a new file:
+
+`docker-compose -f docker-compose.yml docker-compose.test.yml > output.yml`
+
 ## Limitations of Docker Compose 
 
 You get the desired state of your application when you run `docker-compose up`, but that's where Docker Compose ends. It's not a full container platform like [Docker Swarm](./../docker-swarm/) or [Kubernetes](./../kubernetes/) - it doesn't continually run to ensure your application is maintained in its desired state.
