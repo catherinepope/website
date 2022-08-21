@@ -23,6 +23,10 @@ You can check the contents with:
 
 Image registries contain one or more image repositories.
 
+Docker won't talk to any registries without HTTPS, except localhost.
+
+If you want to use a remote self-signed TLS, you need to enable `insecure-registry` in Docker Engine.
+
 ### Searching Docker Hub from the CLI
 
 The docker search command lets you search Docker Hub from the CLI:
@@ -82,13 +86,31 @@ You can then push and pull images to and from your local registry.
 In this example, I'm pulling an existing image from Docker Hub, renaming it, pushing it to my local registry, then pulling it from there:
 
 ``` sh
+docker pull hello-world
 
-docker pull busybox
+docker tag hello-world localhost:5000/hello-world
 
-docker tag busybox localhost:5000/firstapp
+docker push localhost:5000/hello-world
 
-docker push localhost:5000/firstapp
-
-docker pull localhost:5000/firstapp
-
+docker pull localhost:5000/hello-world
 ```
+
+You can also mount a volume for storing your registry data. For example:
+
+``` sh
+docker container run -d -p
+5000:5000 --name registry -v $(pwd)/registry-data:/var/lib/registry registry
+```
+
+This creates a directory called `registry-data` in the current working directory and mounts it on the container.
+
+With the help of a clever utility called Tree (`brew install tree`), you can see the registry, along with the image and its layers:
+
+![Tree of registry](./../../assets/images/tree.png)
+
+### Using a Private Docker Registry with Swarm
+
+All nodes in the Swarm need to be able to push and pull images from a central repository. They can't share images directly.
+
+Because of the routing mesh, all nodes can see 127.0.0.1:5000. You need to decide how to store images, using a volume driver.
+
