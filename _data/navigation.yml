@@ -9,3 +9,5 @@ main:
     url: /courses/
   - title: "Docker"
     url: /docker/
+  - title: "Kubernetes"
+    url: /kubernetes/
