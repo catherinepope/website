@@ -93,6 +93,8 @@ This is done with an image:
 
 ![Using an image to back up UCP](./../../assets/images/backup-ucp.png)
 
+**Note**: Config and secrets are not backed up when you back up UCP.
+
 ### Backing up DTR Images
 
 Make a copy of the following directory:
@@ -113,6 +115,9 @@ docker run --log-driver none -i --rm \
   --ucp-username <ucp-username> \
   --existing-replica-id <replica-id> > dtr-metadata-backup.tar
 ```
+
+**Note**: Users, orgs, and teams are not backed up while backing up DTR.
+
 
 ## Installing Docker Trusted Registry (DTR)
 

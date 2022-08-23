@@ -140,6 +140,14 @@ To inspect the layers that were created:
 
 `docker image inspect <image-name>`
 
+### Triggering an Image Build from a Git Repo
+
+You can also build a Docker image from a git repo by providing the URL. For example, this command build the image from a directory called `docker` in a branch called `container`:
+
+`docker build https://github.com/docker/rootfs.git#container:docker`
+
+The commit history is not preserved.
+
 ### Optimizing Images
 
 Dockerfiles should be optimized so the instructions are ordered by how frequently they change: instructions that are unlikely to change at the start of the Dockerfile, and instructions most likely to change at the end. 
@@ -207,6 +215,12 @@ You can force the build process to ignore the entire cache by passing the `--no-
 `COPY` and `ADD` instructions include steps to ensure that the content copies to the image hasn't changed since the last build. Docker performs a checksum against each file copies and compares it to a checksum of the same file in the cached layer. If the checksums don't match, the cache is invalidated and a new layer is built.
 
 If you're building Linux images and using the apt package manager, you should use the `no-install-recommends` flag with the `apt-get install command` - this ensures apt installs only main dependencies and not recommended or suggested packages.
+
+#### Stopping at a Specific Build Stage
+
+When you build your image, you don't necessarily need to build the entire Dockerfile. You can specify a *target build stage*. The following command stops at a stage named `builder`:
+
+`docker build --target builder -t <repo-name>/<image-name:tag> .`
 
 ### Merging a Docker Image to a Single Layer
 

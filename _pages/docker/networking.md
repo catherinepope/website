@@ -202,6 +202,18 @@ Or use the following command to run a container with a custom external DNS:
 
 `docker run --dns DNS_ADDRESS`
 
+## Assigning a Static IP Address to a Container
+
+*This is a random question that popped up in a test exam!*
+
+A static IP address can be allocated only on a custom network. You would need to create that network first. For example:
+
+``` sh
+docker network create --subnet=172.18.0.0/16 my-net
+
+docker run --net my-net --ip 172.18.0.22 -it ubuntu bash
+```
+
 ## Network Commands
 
 To list networks:
@@ -277,6 +289,8 @@ The first time it shows one container; the second time the other container:
 ![DNS round robin](./../../assets/images/round-robin.png)
 
 It's flipping between the containers sharing the network alias `search`. This is entirely random, though - it's not a proper load balancer. 
+
+
 
 ## Network Troubleshooting
 

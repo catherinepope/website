@@ -24,6 +24,8 @@ A dispatcher determines on which node a task is scheduled.
 
 ## Creating Swarm Services
 
+Services can only be created from a manager node.
+
 There are two methods for creating services:
 
 - Imperatively on the command line with `docker service create`.
@@ -32,6 +34,10 @@ There are two methods for creating services:
 Here's the command-line version:
 
 `docker service create --name <service-name> -p 8080:8080 --replicas 5 <image-name:tag>`
+
+You can specify **constraints** to limit where a service can run. For example, this service can only run on worker nodes:
+
+`docker service create -p 8000:80 --constraint node.role=worker nginx`
 
 To see all the services running on a Swarm, use:
 
@@ -147,6 +153,8 @@ Future updates will automatically use these settings, unless you override them a
 ## Additional Commands for Services
 
 To add a placement preference: `docker service update --placement-pref-add`
+
+Placement preferences are ignored if a service is a `global` type.
 
 To add or update a mount on an existing service: `docker service update --mount-add`
 

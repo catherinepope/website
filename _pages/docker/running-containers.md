@@ -15,7 +15,19 @@ With the `docker commit` command or a [Dockerfile](./../creating-docker-images/#
 
 ## Starting Containers
 
-Use `docker container run` and `docker service create` commands to start one or more containers from a single image.
+Use `docker container run` and `docker service create` commands to start one or more containers from a single image. For example:
+
+``` sh
+docker container run <image-name>
+```
+
+You can also limit how much memory the container can use with the `-m` flag. For example:
+
+``` sh
+docker container run -m 512m ubuntu
+```
+
+By adding the `--privileged` flag, you give all capabilities to the container and also lift any limitations enforced by the device cgroup controller. In other words, the container can do almost everything the host can do. This is generally a bad idea!
 
 You cannot delete an image until the last container using it has been stopped and destroyed.
 

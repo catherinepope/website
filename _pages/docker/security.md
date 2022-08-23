@@ -234,6 +234,10 @@ Secrets are:
 - mounted in containers to in-memory filesystems
 - operate under least-privilege model
 
+The default location of secrets inside a Docker container is `/run/secrets`.
+
+Secrets are not available to standalone containers, only to Swarm services.
+
 ### Creating Secrets
 
 To create a secret, use the following command format:

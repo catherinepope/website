@@ -33,7 +33,7 @@ You push an image, but Docker actually uploads the image *layers*.
 
 Layers are only uploaded to the registry if there isn't an existing match for that layer's hash.
 
-## Pushing and Image to the DTR Repository
+## Pushing an Image to the DTR Repository
 
 Log in to the DTR using `docker login <dtr-ip-address>`.
 

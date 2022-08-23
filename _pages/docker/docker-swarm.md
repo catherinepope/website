@@ -51,6 +51,20 @@ To create a Swarm, use the following command:
 
 `docker swarm init --advertise-addr <ip-address:port>`
 
+You can also specify a subnet range:
+
+`docker swarm init --default-addr-pool 172.16.2.0/24`
+
+You need to allow the following ports:
+
+- TCP port 2377 for cluster management communications.
+- TCP and UDP port 7948 for communication between nodes.
+
+The following networks are created by default:
+
+- docker_gwbridge
+- ingress
+
 To join a node to a Swarm, use:
 
 `docker swarm join-token manager`
