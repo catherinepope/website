@@ -55,3 +55,9 @@ spec:
       periodSeconds: 3
 ```
 Services use these probes to determine pod health and restart containers, where necessary.
+
+A readiness probe is useful in the following scenarios:
+
+- If your container needs to load a lot of data during startup.
+- If you want to only send traffic to a Pod when a probe succeeds.
+- If you want your container to be able to take itself down for maintenance.

@@ -175,7 +175,7 @@ To drain a node (from the manager), run:
 
 To exclude a manager node from running the tasks of a service: `docker node update --availability drain manager`.
 
-Drain mode means slightly different things for workers and managers. In both cases, all the replicas running on the node are shut down and no more replicas will be scheduled for the node. However,Manager nodes remain part of the management group, so they still synchronize the cluster database, provide access to the management API, and can be the leader.
+Drain mode means slightly different things for workers and managers. In both cases, all the replicas running on the node are shut down and no more replicas will be scheduled for the node. However, Manager nodes remain part of the management group, so they still synchronize the cluster database, provide access to the management API, and can be the leader.
 
 Setting a node to DRAIN does not remove standalone containers from that node, such as those created with `docker run`, `docker-compose up`, or the Docker Engine API.
 

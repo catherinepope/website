@@ -13,13 +13,16 @@ Services allow you to specify most of the familiar container options, such as na
 
 Services automatically replace tasks if they fail a healthcheck.
 
+A task is the atomic unit of scheduling with a swarm. When you declare a desired service state by creating or updating a service, the orchestrator achieves the desired state by scheduling tasks. For instance, if you define a service that instructs the orchestrator to keep three instances of a container running at all times, the orchestrator responds by creating three tasks. Each task is a slow that the scheduler fills by spinning up a container.
+
 The steps when creating a service process in swarm mode are:
 
 Docker API > Orchestrator > Allocator > Dispatcher > Scheduler
 
-A dispatcher determines on which node a task is scheduled.
-
-*Placement Preference* is used to place services evenly on appropriate nodes in a Swarm cluster.
+- **Orchestrator**
+- **Allocator**
+- **Dispatcher** determines on which node a task is scheduled.
+- **Scheduler**
 
 
 ## Creating Swarm Services
@@ -87,6 +90,30 @@ The alternative mode is *host mode*, which only publishes the service on Swarm n
 
 ## Managing Services
 
+### Placement Preferences
+
+*Placement Preference* is used to place services evenly on appropriate nodes in a Swarm cluster. For example, you could spread the service across nodes with a specific label:
+
+```sh
+docker service create \
+  --replicas 9 \
+  --name redis_2 \
+  --placement-pref 'spread=node.labels.datacenter' \
+  redis:3.0.6
+```
+
+### Placement Constraints
+
+*Placement Constraints* limits the nodes a service can run on. For example, only workers. For example:
+
+``` sh
+docker service create \
+  --name my-nginx \
+  --replicas 5 \
+  --constraint node.labels.region==east \
+  nginx
+```
+
 ### Scaling a Service
 
 To scale a service, use:
@@ -149,6 +176,14 @@ Use the following command to run a staged or rolling update:
 Use `docker service inspect --pretty <service-name>` to get an overview.
 
 Future updates will automatically use these settings, unless you override them as part of the `docker service update` command.
+
+### Rolling Back a Service
+
+To roll back to a previous version of the service, use:
+
+`docker service rollback <service-name>`
+
+For example, this would undo a previous `scale` command.
 
 ## Additional Commands for Services
 
