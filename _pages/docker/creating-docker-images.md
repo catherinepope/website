@@ -54,6 +54,28 @@ ENTRYPOINT ["node", "./app.js"]
 
 ```
 
+`ARG` is the only instruction that can precede `FROM` in the Dockerfile. It is used to pass variables to the other instructions. For example:
+
+```
+ARG  CODE_VERSION=latest
+FROM base:${CODE_VERSION}
+CMD  /code/run-app
+
+FROM extras:${CODE_VERSION}
+CMD  /code/run-extras 
+```
+
+An `ARG` declared before a `FROM` is outside of a build stage, so it can't be used in any instruction after a `FROM`. To use the default value of an ARG declared before the first FROM use an ARG instruction without a value inside of a build stage:
+
+```
+ARG VERSION=latest
+FROM busybox:$VERSION
+ARG VERSION
+RUN echo $VERSION > image_version
+```
+
+Unlike `ENV`s, `ARG`s are not persisted to run-time.
+
 `FROM` is the base layer of the image. If it's a Linux app, this must specify a Linux-based image. The base layer should be small, and preferably from an official source. If you want to create a new image with no parent image, use `FROM scratch`.
 
 `LABEL` is a key-value pair and a way of adding custom metadata to an image.
@@ -63,7 +85,7 @@ ENTRYPOINT ["node", "./app.js"]
 `CMD`: there are several difference between `CMD` and `RUN`:
 
 - The `CMD` is executed when you run a container from your image. The `RUN` instruction is executed during the build time of the image.
-- You can have only one `CMD` instruction in a Dockerflle. If you add more, only the last one takes effect. You can have as many `RUN` instructions as you need in the same Dockerfile.
+- **You can have only one `CMD` instruction in a Dockerfile**. If you add more, only the last one takes effect. You can have as many `RUN` instructions as you need in the same Dockerfile.
 - You can add a health check to the CMD instruction, for example, `HEALTHCHECK CMD curl --fail http://localhost/health || exit 1`, which tells the Docker engine to kill the container with exit status 1 if the container health fails.
 - The `CMD` syntax uses this form [“param”, param”, “param”] when used in conjunction with the `ENTRYPOINT` instruction. It should be in the following form CMD [“executable”, "param1”, “param2”…] if used by itself.
 
@@ -83,14 +105,16 @@ Example: `CMD "echo" "Hello World!"`
 
 `EXPOSE` exposes a web service on TCP port 8080. This is added as image metadata, not as a layer.
 
-`ENTRYPOINT` sets the main application that the image (container) should run. This is also metadata. `ENTRYPOINT` overrides the CMD instruction and CMD's parameters are used as arguments to `ENTRYPOINT`, e.g:
+`ENTRYPOINT` sets the main application that the image (container) should run. It should be defined when using the container as an executable.`ENTRYPOINT` overrides the CMD instruction and CMD's parameters are used as arguments to `ENTRYPOINT`, e.g:
 
 ```
 CMD "This is my container"
 ENTRYPOINT echo
 ```
 
-`ENV` sets the environment variables in the container, e.g. setting a log path other than the Docker Engine default, e.g. `ENV log_dir /var/log`.
+Using the shell format, the container main process, as defined by the `ENTRYPOINT` instruction, cannot be modified with arguments.
+
+`ENV` sets the environment variables in the container, e.g. setting a log path other than the Docker Engine default, e.g. `ENV log_dir /var/log`. Environment variables can be used at both build-time (for subsequent build steps) and at run-time.
 
 `USER` By default, the Docker engine sets the container’s user to root, which can be harmful. Actually, no one gives root privileges like that. Therefore, you should set a user ID and username for your container, e.g. `USER 75 engy`.
 
