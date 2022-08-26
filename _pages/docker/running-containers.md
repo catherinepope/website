@@ -154,3 +154,15 @@ Docker runs that command in the container at a timed interval. If the status cod
 
 Docker can’t be sure that taking action to fix the unhealthy container won’t make the situation worse, so it broadcasts that the container is unhealthy but leaves it running. The health check continues, too. If the failure is temporary and the next check passes, the container status flips to healthy again.
 
+## Inspecting Changes to Containers
+
+To inspect changes to files or directories on a container's filesystem, use the following command:
+
+`docker diff <container-name>`
+
+Three different types of change are tracked:
+
+- **A** - a file or directory was added
+- **D** - a file or directory was deleted
+- **C** - a file or directory was changed
+

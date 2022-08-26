@@ -41,7 +41,15 @@ The UCP is a container that you run from an image.
 
 You cannot install the DTR on the same node as the UCP. Therefore, your Swarm must have more than one node.
 
+DTR doesn't manage the high availability of data. You need to use a third-party solution for DTR storage.
+
 Fortunately, the (very tricky) installation steps aren't covered by the exam!
+
+### Interlock
+
+UCP also provides Interlock, an integrated component for publishing applications deployed within the cluster. Based on NGINX, Interlock works with Swarm deployments, monitoring the cluster's API for changes on defined services.
+
+We define which services are published and which headers, names, and routes should be available. All changes applied to the services are automatically populated to Interlock's reverse proxy component, which then forwards requests to the associated backends.
 
 ### Sizing Requirements
 
@@ -116,6 +124,8 @@ docker run --log-driver none -i --rm \
   --existing-replica-id <replica-id> > dtr-metadata-backup.tar
 ```
 
+This includes RBAC configuration and image signatures.
+
 **Note**: Users, orgs, and teams are not backed up while backing up DTR.
 
 
@@ -141,5 +151,8 @@ To install the DTR, you must have at least two nodes in your cluster. It won't w
 
 When the DTR is successfully installed, go again to admin ➤ Admin Settings ➤ Docker Trusted Registry. It will display the IP address of the second node. Copy and paste in the browser. The DTR IP will be displayed.
 
+The DTR installation runs the following containers:
 
+- **dtr-garant** - manages user authentication
+- **dtr-jobrunner** - executes DTR's maintenance tasks to remove unreference layers
 

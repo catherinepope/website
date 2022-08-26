@@ -26,3 +26,9 @@ You can also run a single-node Kubernetes cluster through Docker Desktop.
   - DaemonSet
 - **Service** - network endpoint to connect to a pod.
 - **Namespace** - filtered group of objects in a cluster.
+
+## Kubernetes Requirements
+
+Kubernetes requires etcd to work. Most Kubernetes deployment solutions will deploy etcd for you, but it is an external application and therefore your responsibility.
+
+Kubernetes comes with internal networking, but communications between components on different hosts rely on external plugins. You need to choose and deploy your own solution for this communication.

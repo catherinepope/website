@@ -58,12 +58,13 @@ spec:
 - **hostPath**: stores data in a specified directory on the Kubernetes node.
 - **emptyDir**: stores data in a dynamically created location on the node. This directory exists only as long as the Pod exists on the node. When the Pod is removed, the directory and the data are removed. This volume type is good for simply sharing data between two containers in the same Pod.
 
-
 ## PersistentVolumes
 
 **PersistentVolumes** allow you to abstract storage resources. You define a set of available storage resources as a Kubernetes object, then later *claim* those storage resources for use by your Pods.
 
 A cluster administrator can create a set of PersistentVolumes, each containing the volume specification for the underlying storage system.
+
+PersistentVolumes can also be created on demand.
 
 A **PersistentVolumeReclaimPolicy** determines what happens when the associated claims are deleted:
 
