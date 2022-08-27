@@ -19,11 +19,12 @@ The steps when creating a service process in swarm mode are:
 
 Docker API > Orchestrator > Allocator > Dispatcher > Scheduler
 
-- **Orchestrator**
-- **Allocator**
+- **Orchestrator** passes a task to its corresponding node using the HTTP request/response protocol.
+- **Allocator** allocates IP addresses to tasks.
 - **Dispatcher** determines on which node a task is scheduled.
-- **Scheduler**
+- **Scheduler** instructs a worker to run a task.
 
+![Diagram of Swarm services](./../../assets/images/swarm-orchestration.png)
 
 ## Creating Swarm Services
 
