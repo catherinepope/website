@@ -25,6 +25,11 @@ You can check everything is installed correctly by running the `docker version` 
 
 To see the Docker configuration, run `docker info`.
 
+To configure the Docker daemon to start automatically:
+
+- Use upstart for Ubuntu 14.10 and below.
+- Use systemd for most current Linux distributions.
+
 ## Docker Enterprise Edition
 
 Docker Enterprise Edition (EE) is now rebranded as Mirantis Kubernetes Engine (MKE).
@@ -44,6 +49,15 @@ You cannot install the DTR on the same node as the UCP. Therefore, your Swarm mu
 DTR doesn't manage the high availability of data. You need to use a third-party solution for DTR storage.
 
 Fortunately, the (very tricky) installation steps aren't covered by the exam!
+
+### Docker Trusted Registry
+
+You can install DTR on-premises or on a cloud provider. All nodes must:
+
+- Be a worker node managed by UCP.
+- Have a fixed hostname.
+
+The `dtr-ol` network allows DTR components running on different nodes to communicate with each other.
 
 ### Interlock
 
@@ -97,7 +111,7 @@ Here's the process for backing up UCP and DTR:
 
 ### Backing up UCP
 
-This is done with an image:
+This is done with the `docker/ucp` image:
 
 ![Using an image to back up UCP](./../../assets/images/backup-ucp.png)
 
@@ -156,3 +170,26 @@ The DTR installation runs the following containers:
 - **dtr-garant** - manages user authentication
 - **dtr-jobrunner** - executes DTR's maintenance tasks to remove unreference layers
 
+## Troubleshooting
+### Checking the UCP
+
+You can use the `https:///_ping` endpoint to check the health of a single UCP manager node. When you access this endpoint, the UCP manager validates that all its internal components are working, and returns one of the following HTTP error codes:
+
+- **200**, if all components are healthy
+- **500**, if one or more components are unhealthy
+
+### Starting the Docker Daemon Manually
+
+You can start the Docker daemon manually with `dockerd`. On a typical installation, the Docker daemon is started by a system utility, not manually by a user. However, this command is useful for testing and troubleshooting.
+
+You can configure the `dockerd` command using flags: For example, to set the DNS server for all Docker containers, use:
+
+`dockerd -dns <ip-address>`
+
+To specify multiple DNS servers, using multiple `-dns` flags. If the container cannot reach any of the specified IP addresses, Google's public DNS server 8.8.8.8 is added so your container can resolve internet domains.
+
+### Setting the Docker Engine to Debug Mode
+
+To set the Docker Engine to debug mode, use the following command:
+
+`echo '{"debug":true}' > /etc/docker/daemon.json ; sudo kill -HUP`

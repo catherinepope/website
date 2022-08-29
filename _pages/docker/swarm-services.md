@@ -115,6 +115,14 @@ docker service create \
   nginx
 ```
 
+To add or remove a contraint, you can use:
+
+``` sh
+docker service update --constraint-add <service-name>
+
+docker service update --constraint-rm <service-name>
+```
+
 ### Scaling a Service
 
 To scale a service, use:
@@ -196,6 +204,14 @@ To add or update a mount on an existing service: `docker service update --mount-
 
 To set minimum and maximum memory: `--memory 4GB --memory-reservation 2GB`
 
+## Load Balancing Services
+
+When services are created in a Docker Swarm cluster, they are automatically assigned a Virtual IP (VIP) that is part of the service's network. The VIP is returned when resolving the service's name.
+
+Traffic to the VIP is automatically sent to all healthy tasks of that service across the overlay network. This approach avoids any client-side load balancing because only a single IP is returned to the client. Docker takes care of the routing and distributes the traffic equally across the healthy service tasks.
+
+When using this routing mesh, there's no guarantee on which Docker node is servicing client requests.
+
 ## Troubleshooting Services
 
 To view the swarm service logs, use:
@@ -224,6 +240,11 @@ You can:
 - Follow the logs `--follow`
 - Tail the logs `--tail`
 - Get extra details `--details`
+
+
+To view a list of historical tasks for a service, use:
+
+`docker service ps <service-name>`
 
 ## Example of Using Services Together
 

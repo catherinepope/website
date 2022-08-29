@@ -27,6 +27,14 @@ You can also limit how much memory the container can use with the `-m` flag. For
 docker container run -m 512m ubuntu
 ```
 
+By default, each container's access to the host machine's CPU cycles is unlimited. To assign CPUs to a container, use the following command:
+
+``` sh
+docker run -it cpuset-cpus="1,3" ubuntu
+```
+
+The example above specifies that processes in the container can be executed on CPU 1 and CPU 3.
+
 By adding the `--privileged` flag, you give all capabilities to the container and also lift any limitations enforced by the device cgroup controller. In other words, the container can do almost everything the host can do. This is generally a bad idea!
 
 You cannot delete an image until the last container using it has been stopped and destroyed.

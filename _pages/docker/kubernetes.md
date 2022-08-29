@@ -15,6 +15,13 @@ Docker Swarm doesn’t exist as a managed service from the cloud providers. If y
 
 If you’re deploying to the cloud, Kubernetes is a simpler option, but if you’re in the datacenter, Swarm is far easier to manage.
 
+In the UCP, you can choose Swarm, Kubernetes, or Mixed. By default, the UCP uses Calico as the network for Kubernetes.
+
+The primary modes for service discovery in Kubernetes are:
+
+- DNS (the most common method).
+- Environment variables injected by the kubelet when the pods are created.
+
 ## Creating Kubernetes manifests
 
 1.  **apiversion:** - the version of the manifest file.
@@ -24,8 +31,6 @@ If you’re deploying to the cloud, Kubernetes is a simpler option, but if you�
 3. **metadata:** - defines the label, for example, the name of the app. You can define more than one label for the object. Also, in metadata, you define the namespace name. A Kubernetes service uses labels as nametags to identify pods and it can query these labels for service discovering and load-balancing. 
     
 4. **spec:** This is where the action is. In this top key, we define the replicas, the selector, and the template. Inside the template, we can define the image where the container will be crafted from, ports, and any other specifications to run the application correctly.
-
-
 
 ## Networking in Kubernetes
 ### Kubernetes Network Model

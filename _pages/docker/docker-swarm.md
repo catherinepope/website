@@ -45,6 +45,8 @@ On a Swarm, the atomic unit of scheduling is the service. This wraps some advanc
 
 A service is essentially an enhanced container. Whereas individual containers have their own identities, containers in a service are assigned a number based on the service name. It's like the famous computing analogy of pets vs cattle. If you have hundreds of containers (or cows), you don't want to have to shout for them by individual names.
 
+By default, Docker Swarm uses a default address pool of `10.0.0.0/8` for global scope (overlay) networks.
+
 ## Creating a Swarm
 
 To create a Swarm, use the following command:

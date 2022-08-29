@@ -3,7 +3,6 @@ layout: single
 title: Networking in Docker
 permalink: /docker/networking/
 toc: true
-breadcrumbs: true
 ---
 
 ## Overview
@@ -103,6 +102,8 @@ You can reference other containers on the same bridge network simply by using th
 
 `docker run --name bridge_busybox --network my-bridge-net radial/busyboxplus:curl curl bridge_nginx:80`
 
+You can use `EXPOSE` together with `--publish-all` to make containers on the bridge network accessible outside of the host.
+
 ### Multi-Host Overlay Networks
 
 Overlay networks allow a single network to span multiple hosts so containers on different hosts can communicate directly. 
@@ -127,6 +128,12 @@ Control plane traffic is *cluster management traffic*, whereas data plane traffi
 
 You only see overlay networks on worker nodes when they are tasked with running a container on it. This reduces network gossip!
 
+You need the following ports open to traffic to and from each Docker hots participating in an overlay network:
+
+- TCP port 2377 for cluster management communications.
+- TCP and UDP port 7946 for communication between nodes.
+- UDP port 4789 for overlay network traffic.
+
 #### Attaching a Service to an Overlay Network
 
 To attach a service to a network, use:
@@ -144,6 +151,11 @@ The built-in MACVLAN driver makes containers first-class citizens on existing ph
 ![MACVLAN](./../../assets/images/macvlan.png)
 
 Due to the security requirements, MACVLAN is ideal for corporate data center networks, but probably wouldn't work in the public cloud. It mainly used where there's a need for extremely low latency.
+
+When you create a MACVLAN network, it can be in:
+
+- Bridge mode
+- 802.1q trunk bridge mode.
 
 ### None Driver
 

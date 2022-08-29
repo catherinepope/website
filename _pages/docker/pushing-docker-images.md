@@ -43,6 +43,17 @@ Then push the image:
 
 Verify that the image has been submitted correctly by clicking on the left menu in the UCP: Repositories ➤ Tags or Images.
 
+### Trusting Images
+
+By default, when you push an image to DTR, the Docker CLI doesn't sign the image. To sign images, you need to set an environment variable of `DOCKER_CONTENT_TRUST=1`. Now when you push an image, it creates trust metadata. It also creates public and private keys pairs to sign the trust metadata, and push that metadata to the Notary Server.
+
+To sign images to ensure UCP trust, you need to:
+
+- Configure your Notary client.
+- Initialize trust metadata for the repository.
+- Delegate signing to the keys in your UCP client bundle.
+
+
 ### Making Images Immutable
 
 Setting the image as immutable prevents it from being overwritten and deleted. This option is usually selected for an image after it's scanned and promoted.
