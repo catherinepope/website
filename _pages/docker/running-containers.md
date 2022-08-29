@@ -21,11 +21,17 @@ Use `docker container run` and `docker service create` commands to start one or 
 docker container run <image-name>
 ```
 
-You can also limit how much memory the container can use with the `-m` flag. For example:
+## Setting Limits on Containers
+
+### Memory
+
+You can limit how much memory the container can use with the `-m` flag. For example:
 
 ``` sh
 docker container run -m 512m ubuntu
 ```
+
+### CPU
 
 By default, each container's access to the host machine's CPU cycles is unlimited. To assign CPUs to a container, use the following command:
 
@@ -35,11 +41,21 @@ docker run -it cpuset-cpus="1,3" ubuntu
 
 The example above specifies that processes in the container can be executed on CPU 1 and CPU 3.
 
+### Controlling Capabilities
+
+Docker Engine includes a default list of capabilities for newly created containers. By using the `--cap-drop` option for `docker run`, you can exclude additional capabilities. This is good for limiting the attack surface of the container.
+
+All privileges can be dropped with the `--user` option.
+
+Likewise, additional capabilities can be granted with the `--cap-add`. Using `--cap-add=ALL` is highly discouraged!
+
+### Removing All Limits
+
 By adding the `--privileged` flag, you give all capabilities to the container and also lift any limitations enforced by the device cgroup controller. In other words, the container can do almost everything the host can do. This is generally a bad idea!
 
-You cannot delete an image until the last container using it has been stopped and destroyed.
+It's better to add specific capabilities with `--cap-add` or specific devices with the `--device` flag. For example:
 
-Containers run until the app they are executing exits. For example, a Linux container exits when the Bash shell exits.
+`docker run --device=/dv/snd:/dev/snd`
 
 ## Managing Containers
 
@@ -90,6 +106,10 @@ But it's best practice to take the two-step approach of stopping then removing t
 To delete all containers, use:
 
 `docker container -rm -f $(docker container ls -aq)`
+
+You cannot delete an image until the last container using it has been stopped and destroyed.
+
+Containers run until the app they are executing exits. For example, a Linux container exits when the Bash shell exits.
 
 ## Running a Container in Interactive Mode
 

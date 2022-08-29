@@ -50,6 +50,8 @@ DTR doesn't manage the high availability of data. You need to use a third-party 
 
 Fortunately, the (very tricky) installation steps aren't covered by the exam!
 
+Using external certificates is recommended when integrating with a corporate environment. One best practice is to use the Certificate Authority for your organization. Reduce the number of certificates by adding multiple Subject Alternative Names (SANs) to a single certificate. This allows the certificate to be valid for multiple URLs.
+
 ### Docker Trusted Registry
 
 You can install DTR on-premises or on a cloud provider. All nodes must:
