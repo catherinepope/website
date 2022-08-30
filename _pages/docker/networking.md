@@ -88,6 +88,8 @@ The bridge only exists on a single Docker host and can only connect containers o
 
 Every Docker host gets a default single-host bridge network called `bridge0`. This is the network to which all new containers are connected, unless you override it on the command line with the `--network` flag.
 
+Only one sub-network can be created on the default bridge network.
+
 A bridge network is suitable for isolated networking between containers on a single host.
 
 The following command shows how to create a network with the bridge driver:

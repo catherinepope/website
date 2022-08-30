@@ -40,6 +40,12 @@ Docker CE has three types of update channel:
 
 Docker Enterprise Edition (EE) is now rebranded as Mirantis Kubernetes Engine (MKE).
 
+Docker Certified Infrastructure is currently:
+
+- VMWare
+- Amazon Web Services
+- Microsoft Azure
+
 Docker EE has three components:
 
 - Docker EE
