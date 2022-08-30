@@ -30,6 +30,12 @@ To configure the Docker daemon to start automatically:
 - Use upstart for Ubuntu 14.10 and below.
 - Use systemd for most current Linux distributions.
 
+Docker CE has three types of update channel:
+
+- Stable
+- Test
+- Nightly
+
 ## Docker Enterprise Edition
 
 Docker Enterprise Edition (EE) is now rebranded as Mirantis Kubernetes Engine (MKE).

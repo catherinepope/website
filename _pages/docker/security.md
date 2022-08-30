@@ -252,6 +252,8 @@ To list secrets, use:
 
 `docker secret ls`
 
+Secrets are **not** available to standalone containers.
+
 #### Using Secrets with Services
 
 You can attach secrets to services by specifying the `--secret` flag to the `docker service create` command.

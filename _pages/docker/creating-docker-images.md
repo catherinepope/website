@@ -253,3 +253,19 @@ Although this process isn't officially supported by Docker, it does pop up in th
 - Run a container from the image.
 - Export the container to an archive using `docker export`.
 - Import the archive as a new image using `docker import`.
+
+## Backing Up Docker Images
+
+The `docker save` command saves one or more images to a tar archive which contains all the parents layers, tags, and versions. For example:
+
+```sh
+docker save busybox > busybox.tar
+```
+
+The backed up image can be restored with the `docker load` command.
+
+## Creating Containers without Running Them
+
+The `docker container create` or `docker create` command creates a new container from the specified image, without starting it. You can then use the `docker container start` or `docker start` command to start the container at any point.
+
+This is useful when you want to set up a container configuration ahead of time so that it is ready to start when you need it. The initial status of the new container is `created`.

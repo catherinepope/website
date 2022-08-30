@@ -104,6 +104,10 @@ An odd number of managers helps ensure *quorum* and avoid split-brain conditions
 
  `docker node promote <node-name>`
 
+ You can also demote a manager:
+
+ `docker node demote <node-name>`
+
 ### Achieving Quorum
 
 In a swarm of N managers, a quorum (a majority) of manager nodes must always be available. For example, in a swarm with five managers, a minimum of three must be operational and in communication with each other.

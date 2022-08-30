@@ -194,3 +194,8 @@ Three different types of change are tracked:
 - **D** - a file or directory was deleted
 - **C** - a file or directory was changed
 
+## Backing Up Containers
+
+The `docker export` command exports a container's filesystem as a tar archive.
+
+The `docker export` command does not export the contents of volumes associated with the container. If a volume is mounted on top of an existing directory in the container, `docker export` will export the contents of the *underlying directory*, not the contents of the volume.
