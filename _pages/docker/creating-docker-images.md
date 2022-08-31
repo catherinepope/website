@@ -27,8 +27,9 @@ You can create an image from an existing container:
 
 Mostly, though, you'll be using a Dockerfile.
 
-
 ## Creating a Dockerfile
+
+In Docker, the *Builder Pattern* is used to maintain two individual Dockerfiles for app development and production purposes.
 
 Here's a simple example of a Dockerfile:
 
