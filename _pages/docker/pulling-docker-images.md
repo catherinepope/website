@@ -9,6 +9,8 @@ toc: true
 
 Docker images comprise layers. Each layer is represented only once on the file system and is identified by a SHA.
 
+By default, the Docker daemon pulls three layers from the Docker registry at a time.
+
 ### Copy-on-Write
 
 Copy-on-write is a strategy of sharing and copying files for maximum efficiency. If a file or directory exists in a lower layer within the image, and another layer (including the writable layer) needs read access to it, it just uses the existing file. The first time another layer needs to modify the file (when building the image or running the container), the file is copied into that layer and modified. This minimizes I/O and the size of each of the subsequent layers.
