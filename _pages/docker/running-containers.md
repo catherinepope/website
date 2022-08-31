@@ -57,7 +57,9 @@ It's better to add specific capabilities with `--cap-add` or specific devices wi
 
 `docker run --device=/dv/snd:/dev/snd`
 
-## Managing Containers
+## Managing and Updating Containers
+
+The `docker update` command dynamically updates the configuration on running or stopped containers. You can use this command to prevent containers from consuming too many resources from their Docker host. To specify more than one container, provide a space-separated list of container names or IDs.
 
 To see the process list across *all* containers, use: `docker ps`.
 

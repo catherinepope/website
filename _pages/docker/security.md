@@ -100,6 +100,18 @@ The interaction between SELinux policy and Docker is focused on two concerns:
 - protection of the host
 - protection of containers from one another.
 
+### AppArmor
+
+AppArmor is a Linux security model that protects an operating system and its applications from security threats. Docker expects to find an AppArmor policy loaded and enforced.
+
+Docker automatically generates a default profile for containers named `docker-default`. The Docker binary generates this profile in `tmpfs` and then loads it into the kernel.
+
+When you run a container, it uses the docker-default policy unless you override it with the security-opt option. For example, the following explicitly specifies the default policy:
+
+```sh
+ docker run --rm -it --security-opt apparmor=docker-default hello-world
+```
+
 ## Securing Docker Swarm
 
 By default, Swarm Mode includes:

@@ -17,6 +17,8 @@ If youâ€™re deploying to the cloud, Kubernetes is a simpler option, but if youâ€
 
 In the UCP, you can choose Swarm, Kubernetes, or Mixed. By default, the UCP uses Calico as the network for Kubernetes.
 
+The TCP 179 ports is generally used for Kubernetes networking in UCP.
+
 The primary modes for service discovery in Kubernetes are:
 
 - DNS (the most common method).

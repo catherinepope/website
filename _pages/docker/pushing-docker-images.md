@@ -13,6 +13,9 @@ Docker needs the following information when pushing an image:
 - Repository
 - Tag
 
+Repository names should be between 2 and 255 characters long.
+
+An image tag name can be a maximum of 128 characters.
 ## Pushing an Image to Docker Hub
 
 If you're pushing to Docker Hub, you need to log in first using the `docker login` command.
@@ -30,6 +33,8 @@ Then you can push it (push it, real good):
 `docker image push catherinepope/web:latest`
 
 You push an image, but Docker actually uploads the image *layers*.
+
+The Docker daemon pushes five layers at a time.
 
 Layers are only uploaded to the registry if there isn't an existing match for that layer's hash.
 
@@ -52,7 +57,6 @@ To sign images to ensure UCP trust, you need to:
 - Configure your Notary client.
 - Initialize trust metadata for the repository.
 - Delegate signing to the keys in your UCP client bundle.
-
 
 ### Making Images Immutable
 
