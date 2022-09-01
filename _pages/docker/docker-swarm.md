@@ -213,3 +213,4 @@ If you want to make a worker node available again, use:
 
 `docker node update --availability active <node-name>`
 
+To confirm a node's status, run: `docker system info`.

@@ -102,7 +102,6 @@ docker service create \
   --placement-pref 'spread=node.labels.datacenter' \
   redis:3.0.6
 ```
-
 ### Placement Constraints
 
 *Placement Constraints* limits the nodes a service can run on. For example, only workers. For example:
@@ -190,7 +189,7 @@ Future updates will automatically use these settings, unless you override them a
 
 To roll back to a previous version of the service, use:
 
-`docker service rollback <service-name>`
+`docker service update --rollback <service-name>`
 
 For example, this would undo a previous `scale` command.
 
@@ -202,7 +201,13 @@ Placement preferences are ignored if a service is a `global` type.
 
 To add or update a mount on an existing service: `docker service update --mount-add`
 
-To set minimum and maximum memory: `--memory 4GB --memory-reservation 2GB`
+### Managing Memory
+
+Docker can enforce hard memory limits, which allow the container to use no more than a given amount of user or system memory, or soft limits, which allow the container to use as much memory as it needs unless certain conditions are met.
+
+- `--memory` - the maximum amount of memory the container can use.
+- `--memory-reservation`  - allows you to specify a soft limit smaller than `--memory` which is activated when Docker detects contention or low memory on the host machine. Because it is a soft limit, it doesn't guarantee that the container won't exceed the limit.
+- `--memory-swap` - a modifier flag that only has meaning if `--memory` is also set. Using swap allows the container to write excess memory requirements to disk when the container has exhausted all the RAM available to it.
 
 ## Load Balancing Services
 

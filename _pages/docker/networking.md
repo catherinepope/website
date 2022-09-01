@@ -114,6 +114,8 @@ Overlay networks allow a single network to span multiple hosts so containers on 
 
 An overlay network is created by default when you use Docker Swarm.
 
+Overlay networks are first created on the manager nodes. They are created on worker nodes once a task is scheduled on that specific worker node.
+
 The following command shows how to create a network with the overlay driver:
 
 `docker network create --driver overlay my-overlay-net`
