@@ -227,7 +227,7 @@ Stage 1, called `appserver` pulls the `maven:latest` image and adds lots of buil
 
 Stage 2, called `production`, pulls the `java:9-jdk-alpine` image. It copies in some app code produced by the `storefront` and `appserver` stages.
 
-COPY --from instructions are used to copy only production related application code from the images built by the previous stage. They don't copy build artifacts that aren't needed for production.
+`COPY --from` instructions are used to copy only production related application code from the images built by the previous stage. They don't copy build artifacts that aren't needed for production.
 
 If you run `docker image ls`, you'll see a list of images pulled and created by the build operation. You should see that the final image - `multi:stage` - is significantly smaller than the other images that were pulled. This is because it's based on the much smaller `java:9-jdk-alpine` image and contains only the production-related app files from the previous stages.
 

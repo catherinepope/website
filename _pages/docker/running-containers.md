@@ -148,7 +148,7 @@ There are currently three types of restart policy:
 
 - always
 - unless-stopped
-- on-failed
+- on-failure
 
 ### always
 
@@ -164,7 +164,7 @@ Unlike containers with the `--restart always` policy, those with an `unless-stop
 
 ### on-failure
 
-The `on-failure` policy restarts a containers if it exits with a non-zero exit code. It also restarts containers when the Docker daemon restarts, even containers that were in the stopped state.
+The `on-failure` policy restarts a container if it exits with a non-zero exit code. It also restarts containers when the Docker daemon restarts, even containers that were in the stopped state.
 
 ## Checking Container Health
 
