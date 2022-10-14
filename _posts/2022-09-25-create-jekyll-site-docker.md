@@ -81,3 +81,7 @@ In a previous post, I explained an [alternative method for building and previewi
 There's more information on the [Docker images on Bret Fisher's GitHub page](https://github.com/BretFisher/jekyll-serve). A big thank you to Bret for creating and maintaining these images. They make Jekylling much easier.
 
 If you want to learn about Docker in more depth, I recommend [Bret's course](https://www.bretfisher.com/coupon-for-docker-mastery-udemy-course-the-complete-toolset-from-a-docker-captain/).
+
+If you prefer to see a demo of this tutorial, here's a video version:
+
+{% include video id="n18i3uTMhd4" provider="youtube" %}
