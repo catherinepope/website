@@ -111,6 +111,8 @@ If you're using my Docker image, you'll get a random picture:
 
 ![Web app from Kubernetes manifest](/assets/images/nodeport-web.png)
 
+Keep clicking refresh for some moderate fun.
+
 To delete your Deployment and Service, use the following command:
 
 ``` shell
