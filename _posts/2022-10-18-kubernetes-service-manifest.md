@@ -85,7 +85,7 @@ Nearly there.
 
 We're almost ready to launch the web app. 
 
-First, make sure minikube is running. 
+First, make sure minikube is running (use `minikube start` if it's not). 
 
 Then, if you haven't done so already, enable ingress:
 
@@ -109,7 +109,7 @@ Open your web browser, then paste your minikube IP address, a colon, and the Nod
 
 If you're using my Docker image, you'll get a random picture:
 
-![Web app from Kubernetes manifest](../assets/images/nodeport-web.png)
+![Web app from Kubernetes manifest](/assets/images/nodeport-web.png)
 
 To delete your Deployment and Service, use the following command:
 
@@ -119,5 +119,4 @@ kubectl delete -f my-deployment.yaml
 
 ## Conclusion
 
-In this tutorial, you've included multiple manifests in one YAML file to deploy a web app. In my next post, I'll explain how you can package Kubernetes-based app with a tool called Helm.
-
+In this tutorial, you've included multiple manifests in one YAML file to deploy a web app. In my next post, I'll explain how you can package a Kubernetes-based app with a tool called Helm.
